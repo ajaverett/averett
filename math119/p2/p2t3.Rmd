@@ -1,0 +1,628 @@
+---
+title: "Project 2"
+author: "Aj Averett"
+date: '2022-05-24'
+output:
+  rmdformats::readthedown:
+    code_folding: hide
+    keep_md: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Task 3
+
+The data for this project models light bulb intensity over time.
+
+```{r}
+library(data4led)
+bulb <- led_bulb(1, seed = 196)
+
+
+t <- bulb$hours
+y <- bulb$percent_intensity
+
+```
+
+In order to find the best fit lines for the functions, we will do the following steps:
+
+* __Step One:__ Obtain the equation to calculate the residuals according to a certain model.
+
+* __Step Two:__ Use the residual calculation for each point to obtain a likelihood function that fits the data points given the respective parameters. By nature of this graph, the peak of this likelihood function will represent the parameter in which the model/function will best fit the data points.
+
+* __Step Three:__ Since the inputs of the likelihood graph represents parameters, and the only input that describes the best fit parameter will not change if we find the natural log of the respective function and use the same input, for convenience, we will use the natural log of each likelihood function to easily find the critical points.
+
+* __Step Four:__ Find the critical point of the log-likelihood function in order to find the best fit parameter. For functions with single inputs, we will simply equal the derivative to zero and solve for the parameter. For functions with multiple inputs, we will have to find the partial derivatives of each function and set up a systems of equations where each partial derivative is equal to zero- thus allowing us to solve for two variables.
+
+* __Step Five:__ Using the respective second derivative test, find if the critical points for each function are actually the maximum.
+
+## Function One
+
+Function One is:
+$f_1(t; a_1) = 100 + a_1t$
+
+The log likelihood function of Function One is:
+$\ell_1(a_1;\overrightarrow{t}, \overrightarrow{y})=44\ln\left(\frac{1}{\sqrt{2\pi}}\right)-\frac{1}{2}\sum_{i=1}^{44}\left(y_i- 100 - a_1t_i\right)^2$
+
+The derivative of the log likelihood of Function One is:
+$\frac{d\ell_1}{da_1} =\left(\sum_{i=1}^{44} t_i(y_i-100)\right) - \left(\sum_{i=1}^{44}t_i^2\right) a_1$
+
+In order to find the best fit parameter for the data given a model with one input, we can set the derivative equal to zero in order to find where the derivative function has a slope of zero- thus, when we solve for the parameter, we will find the parameter input that causes the output to have a local rate of change of zero. This is solving for a critical point.
+
+$a = b - cx$
+
+<br>
+
+$a=0\\b=\sum_{i=1}^{44}(y_i-100)t_i\\c=\sum_{n=1}^{44}(t_i^2)$
+
+<br>
+
+$x = (a - b)/-c$
+
+<br>
+__Best fit parameter for $a_1$ given model $\ell_1(a_1)$__
+```{r}
+
+# L1 <- function(a1,t = bulb$hours, y = bulb$percent_intensity){
+#   44*log(1/sqrt(2*pi)) - 0.5*sum((y - 100 - a1*t)^2)
+# }
+# 
+# dL1.da1 <- function(a1,t = bulb$hours, y = bulb$percent_intensity){
+#   sum((y - 100)*t) - sum(t^2)*a1
+# }
+
+a <- 0
+b <- sum((y - 100)*t)
+c <- sum(t^2)
+
+# a = b - c*x
+# + -b
+# (a - b) = - c*x
+# / -c
+
+(a - b)/-c -> f1.a1
+
+f1.a1
+
+```
+
+In order to make sure that this critical point is a maximum and concave down, a second derivative test is to be performed.
+
+The second derivative of Function One is:
+$\frac{d^2\ell_2}{da_1^2} =-\sum_{i=1}^{44} t_i^2$
+
+The second derivative function test states that if the second derivative is negative at a critical point, the respective critical point, on the original function is a local maximum and thus concave down.
+
+<br>
+__Outcome of second derivative test in two dimensions__
+```{r} 
+d2L1.da2 <- function(a1){-sum(t^2)}
+d2L1.da2(f1.a1)
+```
+
+Since the second derivative test outputs a negative number when the input for the critical point is given, we can deduce that the critical point is a local maximum and concave down.
+
+```{r}
+x <- 0:80000
+
+f_1 <- function(t, a0  =  100, a1  =  0.0001514219){
+  a0 + a1*t
+}
+
+par(mfrow = c(1,2),mar = c(2,2,3,0.25),oma = rep(0.5,4))
+plot(t,y,xlab = "Hour ", ylab = "Intensity(%) ", pch = 16,main = '')
+lines(x,f_1(x),col = 2)
+plot(t,y,xlab = "Hour ", ylab = "Intensity(%) ", pch = 16, xlim  =  c(-10,80000),ylim  =  c(-10,120))
+lines(x,f_1(x),col = 2)
+```
+
+
+***
+
+## Function Two
+
+Function Two is:
+$f_2(t; a_1,a_2) = 100 + a_1t + a_2t^2$
+
+The log likelihood function of Function Two is:
+$\ell_2(a_1,a_2;\overrightarrow{t},\overrightarrow{y}) =44\ln\left(\frac{1}{\sqrt{2\pi}}\right)-\frac{1}{2}\sum_{i=1}^{44}\left(y_i-100 - a_1t_i - a_2t_i^2\right)^2$
+
+The partial derivatives of the log likelihood of Function Two is:
+$\frac{\partial\ell_2}{\partial a_1} = \left(\sum_{i=1}^{44} (y_i - 100)t_i\right) - \left(\sum_{i=1}^{44}t_i^2\right)a_1 - \left(\sum_{i=1}^{44}t_i^3\right)a_2$
+and
+$\frac{\partial\ell_2}{\partial a_2} = \left(\sum_{i=1}^{44} (y_i - 100)t_i^2\right) - \left(\sum_{i=1}^{44}t_i^3\right)a_1 - \left(\sum_{i=1}^{44}t_i^4\right)a_2$
+
+In order to find the best fit parameter for the data given a model with one input, we can set the partial derivatives equal to zero and set them equal to each other in a system of equations in order to find where the derivative function has a three dimensional slope of zero- thus, when we solve for the parameters, we will find the parameter inputs that causes the output to have a local rate of change of zero. 
+
+$$
+\left\{
+\begin{align*}
+b_1 - c_{11}a_1 - c_{12}a_2 &= 0 \\ 
+b_2 - c_{21}a_1 - c_{22}a_2 &= 0,
+\end{align*} 
+\right.
+$$
+Where:
+
+$b_1 = \sum_{i=1}^{44}((y - 100)t)$
+
+$c_{11} = \sum_{i=1}^{44}(t^2)$
+
+$c_{12} = \sum_{i=1}^{44}(t^3)$
+
+$b_2 = \sum_{i=1}^{44}((y - 100)t^2)$
+
+$c_{21} = \sum_{i=1}^{44}(t^3)$
+
+$c_{22} = \sum_{i=1}^{44}(t^4)$
+
+
+<br>
+__Best fit parameter for $a_1$ given model $\ell_2(a_1, a_2)$__
+```{r}
+# L2
+
+# L2 <- function(a1,a2,t = bulb$hours, y = bulb$percent_intensity){
+#   44*log(1/sqrt(2*pi)) - 0.5*sum((y - 100 - a1*t - a2*t^2)^2)
+# }
+# 
+# dL2.da1 <- function(a1,a2,t = bulb$hours, y = bulb$percent_intensity){
+#   sum((y - 100)*t) - sum((t^2)*a1) - sum((t^3)*a2)
+# }
+# dL2.da2 <- function(a1,a2,t = bulb$hours, y = bulb$percent_intensity){
+#   sum((y - 100)*t^2) - sum((t^3)*a1) - sum((t^4)*a2)
+# }
+
+b.1 <- sum((y - 100)*t)
+c.11 <- sum(t^2)
+c.12 <- sum(t^3)
+b.2 <- sum((y - 100)*t^2)
+c.21 <- sum(t^3)
+c.22 <- sum(t^4)
+
+f2.a2 <- (c.11*b.2 - c.12*b.1)/(c.11*c.22 - c.12^2) 
+f2.a1 <- (b.1 - c.12*f2.a2)/c.11 
+
+f2.a1
+```
+
+<br>
+__Best fit parameter for $a_2$ given model $\ell_2(a_1, a_2)$__
+```{r}
+f2.a2
+```
+
+In order to make sure that this critical point is a maximum and concave down, a second derivative test is to be performed.
+
+The second partial derivatives of the log likelihood of Function Two is:
+
+$\frac{\partial^2\ell_2}{\partial a_1^2} = - \sum_{i=1}^{44}t_i^2$
+
+$\frac{\partial^2\ell_2}{\partial a_2^2} = - \sum_{i=1}^{44}t_i^4$
+
+$\frac{\partial^2\ell_2}{\partial a_2 \partial a_1} = -\sum_{i=1}^{44}t_i^3$
+
+The second derivative test in two dimensions states that if
+given:
+$D = \left(\frac{\partial^2 f}{\partial a_1^2}\right)\left( \frac{\partial^2 f}{\partial a_2^2}\right) - \left(\frac{\partial^2 f}{\partial a_1a_2}\right)^2$
+
+* If $D > 0$ and $\frac{\partial^2 f}{\partial a_1^2} > 0$, then the respective critical point is a local minimum
+
+* If $D > 0$ and $\frac{\partial^2 f}{\partial a_1^2} < 0$, then the respective critical point is a local maximum
+
+* If $D > 0$, then the respective critical point is a saddle point.
+
+* If If $D = 0$, the test is inconclusive.
+
+<br>
+__Outcome of second derivative test in three dimensions ($D$ and $\frac{\partial^2\ell_2}{\partial a_1^2}$)__
+```{r}
+d2L2.da12 <- -sum(t^2)
+
+d2L2.da22 <- -sum(t^4)
+
+d2L2.da1a2 <- -sum(t^3)
+
+D <- d2L2.da12*d2L2.da22 - d2L2.da1a2^2
+
+D
+
+d2L2.da12
+```
+Since $D$ is positive and $\frac{\partial^2 f}{\partial a_1^2} < 0$, the respective critical point is a local maximum
+
+```{r}
+# f_2(t; a_0,a_1)  =  a_0 + a_1t
+f_2 <- function(t, a0  =  100, a1  =  0.0003695018, a2  =  -5.713572e-08){
+  a0 + a1*t + a2*t^2
+}
+
+par(mfrow = c(1,2),mar = c(2,2,3,0.25),oma = rep(0.5,4))
+plot(t,y,xlab = "Hour ", ylab = "Intensity(%) ", pch = 16,main = '')
+lines(x,f_2(x),col = 2)
+plot(t,y,xlab = "Hour ", ylab = "Intensity(%) ", pch = 16, xlim  =  c(-10,80000),ylim  =  c(-10,120))
+lines(x,f_2(x),col = 2)
+```
+
+
+***
+## Function Four
+
+Function Four is:
+$f_4(t; a_1,a_2) = 100 + a_1t + a_2\ln(0.005t+1)$
+
+The log likelihood function of Function Four is:
+$\ell_4(a_1,a_2;\overrightarrow{t},\overrightarrow{y}) =44\ln\left(\frac{1}{\sqrt{2\pi}}\right)-\frac{1}{2}\sum_{i=1}^{44}\left(y_i-100 - a_1t_i - a_2\ln(0.005t_i+1)\right)^2$
+
+The partial derivatives of the log likelihood of Function Four is:
+$\frac{\partial\ell_4}{\partial a_1} = \left(\sum_{i=1}^{44} t_i(y_i-100)\right) -\left(\sum_{i=1}^{44} t_i^2\right) a_1 - \left(\sum_{i=1}^{44}t_i\ln(0.005t_i + 1)\right) a_2$
+and
+$\frac{\partial\ell_4}{\partial a_2} = \left(\sum_{i=1}^{44} \ln(0.005t_i +1)(y_i-100)\right) - \left(\sum_{i=1}^{44} t_i\ln(0.005t_i + 1)\right)a_1 - \left(\sum_{i=1}^{44} (\ln(0.005t_i + 1))^2\right)a_2$
+
+In order to find the best fit parameter for the data given a model with one input, we can set the partial derivatives equal to zero and set them equal to each other in a system of equations in order to find where the derivative function has a three dimensional slope of zero- thus, when we solve for the parameters, we will find the parameter inputs that causes the output to have a local rate of change of zero. 
+
+
+$$
+\left\{
+\begin{align*}
+b_1 - c_{11}a_1 - c_{12}a_2 &= 0 \\ 
+b_2 - c_{21}a_1 - c_{22}a_2 &= 0,
+\end{align*} 
+\right.
+$$
+Where:
+
+$b_1 = \sum_{i=1}^{44}((y - 100)t)$
+
+$c_{11} = \sum_{i=1}^{44}(t^2)$
+
+$c_{12} = \sum_{i=1}^{44}(t \ln(0.005t + 1))$
+
+$b_2 = \sum_{i=1}^{44}(\ln(0.005 t + 1)(y - 100))$
+
+$c_{21} = \sum_{i=1}^{44}(t\ln(0.005 t + 1))$
+
+$c_{22} = \sum_{i=1}^{44}(\ln(0.005 t + 1)^2)$
+
+<br>
+
+__Best fit parameter for $a_1$ given model $\ell_4(a_1, a_2)$__
+```{r}
+# L4 <- function(a1,t = bulb$hours, y = bulb$percent_intensity){
+#   44*log(1/sqrt(2*pi)) - 0.5*sum((y - 100 - a1*t - a2*log(0.005*t + 1))^2)
+# }
+# 
+# dL4.da1 <- function(a1,a2,t = bulb$hours, y = bulb$percent_intensity){
+#   sum((y - 100)*t) - sum((t^2)*a1) - sum(t*log(0.005*t + 1))*a2
+# }
+# 
+# dL4.da2 <- function(a1,a2,t = bulb$hours, y = bulb$percent_intensity){
+#   sum(log(0.005*t + 1)*(y - 100)) - sum(t*log(0.005*t + 1))*a1 - sum(log(0.005*t + 1)^2)*a2
+# }
+
+b.1 <- sum((y - 100)*t)
+c.11 <- sum(t^2)
+c.12 <- sum(t*log(0.005*t + 1))
+b.2 <- sum(log(0.005*t + 1)*(y - 100))
+c.21 <- sum(t*log(0.005*t + 1))
+c.22 <- sum(log(0.005*t + 1)^2)
+
+f4.a2 <- (c.11*b.2 - c.12*b.1)/(c.11*c.22 - c.12^2) 
+f4.a1 <- (b.1 - c.12*f4.a2)/c.11 
+
+f4.a1
+```
+
+
+<br>
+__Best fit parameter for $a_2$ given model $\ell_4(a_1, a_2)$__
+```{r}
+f4.a2
+```
+
+In order to make sure that this critical point is a maximum and concave down, a second derivative test is to be performed.
+
+The second partial derivatives of the log likelihood of Function Two is:
+$\frac{\partial^2\ell_4}{\partial a_1^2} =-\sum_{i=1}^{44} t_i^2$
+
+$\frac{\partial^2\ell_4}{\partial a_2^2} = -\sum_{i=1}^{44} (\ln(0.005t_i +1))^2$
+
+$\frac{\partial^2\ell_4}{\partial a_2a_1} =- \sum_{i=1}^{44} t_i\ln(0.005t_i +1)$
+
+The second derivative test in two dimensions states that if
+given:
+$D = \left(\frac{\partial^2 f}{\partial a_1^2}\right)\left( \frac{\partial^2 f}{\partial a_2^2}\right) - \left(\frac{\partial^2 f}{\partial a_1a_2}\right)^2$
+
+* If $D > 0$ and $\frac{\partial^2 f}{\partial a_1^2} > 0$, then the respective critical point is a local minimum
+
+* If $D > 0$ and $\frac{\partial^2 f}{\partial a_1^2} < 0$, then the respective critical point is a local maximum
+
+* If $D > 0$, then the respective critical point is a saddle point.
+
+* If If $D = 0$, the test is inconclusive.
+
+<br>
+__Outcome of second derivative test in three dimensions ($D$ and $\frac{\partial^2\ell_4}{\partial a_1^2}$)__
+```{r}
+d2L4.da12 <- -sum(t^2)
+
+d2L4.da22 <- -sum(log(0.005*t + 1))^2
+
+d2L4.da1a2 <- -sum(t*log(0.005*t + 1))
+
+D <- d2L4.da12*d2L4.da22 - d2L4.da1a2^2
+
+D
+
+d2L4.da12
+```
+Since $D$ is positive and $\frac{\partial^2 f}{\partial a_1^2} < 0$, the respective critical point is a local maximum
+
+```{r}
+# f_4(t; a_0,a_1,a_2)  =  a_0 + a_1t + a_2\ln(0.005t+1)
+f_4 <- function(t, a0  =  100, a1  =  -7.310545e-05, a2  =  0.2681037){
+  a0 + a1*t + a2*log(0.005*t + 1)
+}
+
+par(mfrow = c(1,2),mar = c(2,2,3,0.25),oma = rep(0.5,4))
+plot(t,y,xlab = "Hour ", ylab = "Intensity(%) ", pch = 16,main = '')
+lines(x,f_4(x),col = 2)
+plot(t,y,xlab = "Hour ", ylab = "Intensity(%) ", pch = 16, xlim  =  c(-10,80000),ylim  =  c(-10,120))
+lines(x,f_4(x),col = 2)
+```
+
+
+***
+## Function Five
+
+Function Five is:
+$f_5(t; a_1) = 100e^{-0.00005t} + a_1te^{-0.00005t}$
+
+The log likelihood function of Function Five is:
+$\ell_5(a_1;\overrightarrow{t}, \overrightarrow{y})=44\ln\left(\frac{1}{\sqrt{2\pi}}\right)-\frac{1}{2}\sum_{i=1}^{44}\left(y_i-100e^{-0.00005t_i} - a_1t_ie^{-0.00005t_i}\right)^2$
+
+The derivative of the log likelihood of Function Five is:
+$\frac{d\ell_5}{da_1}=\left(\sum_{i=1}^{44}t_ie^{-0.00005t_i}(y_i-100e^{-0.00005t_i})\right)-\left(\sum_{i=1}^{44}(t_ie^{-0.00005t_i})^2\right)a_1$
+
+In order to find the best fit parameter for the data given a model with one input, we can set the derivative equal to zero in order to find where the derivative function has a slope of zero- thus, when we solve for the parameter, we will find the parameter input that causes the output to have a local rate of change of zero. This is solving for a critical point.
+
+$a = b - cx$
+
+<br>
+
+$a=0\\b=\sum_{i=1}^{44}t_ie^{-0.00005t_i}(y_i-100e^{-0.00005t_i})\\c=-\sum_{i=1}^{44}(t_ie^{-0.00005t_i})^2$
+
+<br>
+
+$x = (a - b)/-c$
+
+<br>
+__Best fit parameter for $a_1$ given model $\ell_5(a_1)$__
+```{r}
+
+L5 <- function(a1,t = bulb$hours, y = bulb$percent_intensity){
+  44*log(1/sqrt(2*pi)) - 0.5*sum((y - 100 - a1*t)^2)
+}
+
+dL5.da1 <- function(a1,t = bulb$hours, y = bulb$percent_intensity){
+  sum(t*exp(-0.00005*t)*(y - 100*exp(-0.00005*t))) - sum(t*exp(-0.00005*t)^2)*a1
+}
+
+a <- 0
+b <- sum(t*exp(-0.00005*t)*(y - 100*exp(-0.00005*t)))
+c <- sum((t*exp(-0.00005*t))^2)
+
+# a = b - c*x
+# + -b
+# (a - b) = - c*x
+# / -c
+(a - b)/-c -> f5.a1
+
+f5.a1
+
+```
+In order to make sure that this critical point is a maximum and concave down, a second derivative test is to be performed.
+
+The second derivative of Function Five is:
+$\frac{d^2\ell_5}{da_1^2} =-\sum_{i=1}^{44} (t_ie^{-0.00005t_i})^2$
+
+The second derivative function test states that if the second derivative is negative at a critical point, the respective critical point, on the original function is a local maximum and thus concave down.
+
+<br>
+__Outcome of second derivative test in two dimensions__
+```{r} 
+d2L5.da12 <- function(a1){
+  -sum(t*exp(-0.00005*t)^2)
+}
+d2L5.da12(f5.a1)
+```
+
+Since the second derivative test outputs a negative number when the input for the critical point is given, we can deduce that the critical point is a local maximum and concave down.
+
+```{r}
+f_5 <- function(t, a1 = f5.a1){
+ 100*exp(-0.00005*t) + a1*t*exp(-0.00005*t)
+}
+
+par(mfrow = c(1,2),mar = c(2,2,3,0.25),oma = rep(0.5,4))
+plot(t,y,xlab = "Hour ", ylab = "Intensity(%) ", pch = 16,main = '')
+lines(x,f_5(x),col = 2)
+plot(t,y,xlab = "Hour ", ylab = "Intensity(%) ", pch = 16, xlim = c(-10,80000),ylim = c(-10,120))
+lines(x,f_5(x),col = 2)
+```
+
+
+***
+
+## Function Six
+
+Function Six is:
+$f_6(t; a_1,a_2) = 100 + a_1t +a_2(1-e^{-0.0003t})$
+
+The log likelihood function of Function Six is:
+$\ell_6(a_1,a_2;\overrightarrow{t},\overrightarrow{y}) =44\ln\left(\frac{1}{\sqrt{2\pi}}\right)-\frac{1}{2}\sum_{i=1}^{44}\left(y_i-100 - a_1t_i - a_2(1-e^{-0.0003t_i})\right)^2$
+
+The partial derivatives of the log likelihood of Function Six is:
+$\frac{\partial\ell_2}{\partial a_1} = \left(\sum_{i=1}^{44} (y_i - 100)t_i\right) - \left(\sum_{i=1}^{44}t_i^2\right)a_1 - \left(\sum_{i=1}^{44}t_i^3\right)a_2$
+and
+$\frac{\partial\ell_2}{\partial a_2} = \left(\sum_{i=1}^{44} (y_i - 100)t_i^2\right) - \left(\sum_{i=1}^{44}t_i^3\right)a_1 - \left(\sum_{i=1}^{44}t_i^4\right)a_2$
+
+In order to find the best fit parameter for the data given a model with one input, we can set the partial derivatives equal to zero and set them equal to each other in a system of equations in order to find where the derivative function has a three dimensional slope of zero- thus, when we solve for the parameters, we will find the parameter inputs that causes the output to have a local rate of change of zero. 
+
+***
+
+$$
+\left\{
+\begin{align*}
+b_1 - c_{11}a_1 - c_{12}a_2 &= 0 \\ 
+b_2 - c_{21}a_1 - c_{22}a_2 &= 0,
+\end{align*} 
+\right.
+$$
+Where:
+
+$b_1 = \sum_{i=1}^{44}((y - 100)t)$
+
+$c_{11} = \sum_{i=1}^{44}(t^2)$
+
+$c_{12} = \sum_{i=1}^{44}(t(1 - e^{-0.0003*t}))$
+
+$b_2 = \sum_{i=1}^{44}\left((y - 100)(1 - e{-0.0003*t})\right)$
+
+$c_{21} = \sum_{i=1}^{44}(t(1 - e{-0.0003t}))$
+
+$c_{22} = \sum_{i=1}^{44}((1 - e{-0.0003t})^2)$
+
+
+<br>
+__Best fit parameter for $a_1$ given model $\ell_6(a_1, a_2)$__
+```{r}
+# L6 <- function(a1, a2,t = bulb$hours, y = bulb$percent_intensity){
+#   44*log(1/sqrt(2*pi)) - 0.5*sum((y - 100 - a1*t - a2*(1-exp(-0.0003*t)))^2)
+# }
+# 
+# dL6.da1 <- function(a1,a2,t = bulb$hours, y = bulb$percent_intensity){
+#   sum((y - 100)*t) - sum(t^2)*a1 - sum(t^3)*a2
+# }
+# 
+# dL6.da2 <- function(a1,a2,t = bulb$hours, y = bulb$percent_intensity){
+#   sum((y - 100)*t^2) - sum(t^3)*a1 - sum(t^4)*a2
+# }
+
+b.1 <- sum((y - 100)*t)
+c.11 <- sum(t^2)
+c.12 <- sum(t*(1 - exp(-0.0003*t)))
+b.2 <- sum((y - 100)*(1 - exp(-0.0003*t)))
+c.21 <- sum((1 - exp(-0.0003*t))*t)
+c.22 <- sum((1 - exp(-0.0003*t))^2)
+
+f6.a2 <- (c.11*b.2 - c.12*b.1)/(c.11*c.22 - c.12^2) 
+f6.a1 <- (b.1 - c.12*f6.a2)/c.11 
+
+f6.a1
+```
+
+__Best fit parameter for $a_2$ given model $\ell_6(a_1, a_2)$__
+```{r}
+f6.a2
+```
+
+In order to make sure that this critical point is a maximum and concave down, a second derivative test is to be performed.
+
+The second partial derivatives of the log likelihood of Function Six is:
+
+$\frac{\partial^2 \ell_6}{a_1^2} = - \sum_{i=1}^{44}t_i^2$
+
+$\frac{\partial^2 \ell_6}{a_2^2} = - \sum_{i=1}^{44}(1-e^{-0.0003t_i})^2$
+
+$\frac{\partial^2\ell_6}{\partial a_2 \partial a_1} = -\sum_{i=1}^{44}t_i(1-e^{-0.0003t_i})$
+
+The second derivative test in two dimensions states that if
+given:
+$D = \left(\frac{\partial^2 f}{\partial a_1^2}\right)\left( \frac{\partial^2 f}{\partial a_2^2}\right) - \left(\frac{\partial^2 f}{\partial a_1a_2}\right)^2$
+
+* If $D > 0$ and $\frac{\partial^2 f}{\partial a_1^2} > 0$, then the respective critical point is a local minimum
+
+* If $D > 0$ and $\frac{\partial^2 f}{\partial a_1^2} < 0$, then the respective critical point is a local maximum
+
+* If $D > 0$, then the respective critical point is a saddle point.
+
+* If If $D = 0$, the test is inconclusive.
+
+<br>
+__Outcome of second derivative test in three dimensions ($D$ and $\frac{\partial^2\ell_6}{\partial a_1^2}$)__
+```{r}
+d2L6.da12 <- -sum(t^2)
+
+d2L6.da22 <- -sum(1 - exp(-0.0003*t))^2
+
+d2L6.da1a2 <- -sum(1 - exp(-0.0003*t))
+
+D <- d2L6.da12*d2L6.da22 - d2L6.da1a2^2
+
+D
+
+d2L6.da12
+```
+Since $D$ is positive and $\frac{\partial^2 f}{\partial a_1^2} < 0$, the respective critical point is a local maximum
+
+
+```{r}
+f_6 <- function(t, a1 = f6.a1, a2 = f6.a2){
+ 100 + a1*t + a2*(1 - exp(-0.0003*t))
+}
+
+par(mfrow = c(1,2),mar = c(2,2,3,0.25),oma = rep(0.5,4))
+plot(t,y,xlab = "Hour ", ylab = "Intensity(%) ", pch = 16,main = '')
+lines(x,f_6(x),col = 2)
+plot(t,y,xlab = "Hour ", ylab = "Intensity(%) ", pch = 16, xlim = c(-10,80000),ylim = c(-10,120))
+lines(x,f_6(x),col = 2)
+```
+
+
+# Summary
+Below are all 5 fitted functions with their given parameters.
+
+$f_1(t; a_1 = 0.0001514219) = 100 +a_1t$
+```{r}
+f_1 <- function(t, a0  =  100, a1  =  0.0001514219){
+  a0 + a1*t
+}
+```
+
+$f_2(t; a_1 = 0.0003695018,a_2 = -5.713572e-08) = 100 +a_1t + a_2t^2$
+
+```{r}
+f_2 <- function(t, a0  =  100, a1  =  0.0003695018, a2  =  -5.713572e-08){
+  a0 + a1*t + a2*t^2
+}
+```
+
+$f_4(t; a_1 = -7.310545e-05,a_2 = 0.2681037) = 100 +a_1t + a_2\ln(0.005t+1)$
+
+```{r}
+f_4 <- function(t, a0  =  100, a1  =  -7.310545e-05, a2  =  0.2681037){
+  a0 + a1*t + a2*log(0.005*t + 1)
+}
+```
+
+$f_5(t; a_1 = 0.005681523) =100e^{-0.00005t} + a_1te^{-0.00005t}$
+```{r}
+f_5 <- function(t, a1 = f5.a1){
+ 100*exp(-0.00005*t) + a1*t*exp(-0.00005*t)
+}
+```
+
+$f_6(t; a_1 = -0.0002962487,a_2 = 2.472753) = 100 +a_1t +a_2(1-e^{-0.0003t})$
+
+```{r}
+f_6 <- function(t, a1 = f6.a1, a2 = f6.a2){
+ 100 + a1*t + a2*(1 - exp(-0.0003*t))
+}
+```
+
+<br>
+
+<br>

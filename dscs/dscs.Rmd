@@ -1,0 +1,146 @@
+```{r}
+library(data4led)
+bulb <- led_bulb(1,seed=123)
+t <- bulb$hours
+y <- bulb$percent_intensity
+```
+
+$$
+\ell_1(a_1; \mathbf{t},\mathbf{y}) = 44\ln\left(\frac{1}{\sqrt{2\pi}}\right) - \frac{1}{2}\sum_{i}^{44} (y_i - 100 - a_1t_i)^2.
+$$
+
+```{r}
+l1 <- function(a1,t=bulb$hours,y=bulb$percent_intensity){
+  44*log(1/sqrt(2*pi)) - (1/2)*sum((y - 100 - a1*t)^2)
+}
+
+
+x<- 10:20
+
+y.L <- as.numeric(lapply(x,FUN=l1,t))
+
+
+l1(x)
+plot(x,y.L)
+
+```
+
+$$
+\frac{d\ell_1}{da_1} =
+\left(\sum_{i=1}^{44} t_i(y_i-100)\right) - \left(\sum_{i=1}^{44}
+t_i^2\right) a_1
+$$
+```{r}
+Dl1 <- function(a){
+  sum(t*(y-100)) - sum(t^2)*a
+}
+
+Dl1(0.000525437675)
+
+```
+
+c.11 <- sum(t^2)
+c.12 <- sum(t^3)
+b.1 <- sum((y-100)*t)
+c.21 <- sum(t^3)
+c.22 <- sum(t^4)
+b.2 <- sum((y-100)*t^2)
+
+y <- (c.11*b.2 - c.21*b.1)/(c.11*c.22 - c.21*c.12)
+x <- (b.1-c.12*y)/c.11
+
+y
+x
+
+
+
+
+
+
+
+
+
+
+
+
+```{r}
+# Florida Tropical Storm Data (2000-2020) from Wikipedia
+year <- seq(2000,2020,1)
+x <- c(4,4,8,8,6,8,2,8,8,4,8,6,4,3,3,4,5,7,4,7,13)
+c <- sum(x)
+b <- sum(log(factorial(x)))
+
+
+Dl <- function(L){
+  (c/L)-21
+}
+
+D2l <- function(L){
+  c*-L^(-2)
+}
+```
+
+
+
+```{r}
+rm(list=ls())
+# Florida Tropical Storm Data (2000-2020)
+storms <- c(4,4,8,8,6,8,2,8,8,4,8,6,4,3,3,4,5,7,4,7,13)
+
+L <- function(lambda,x){
+  # Remember x must be a whole number.
+  prod((lambda^x/factorial(x))*exp(-lambda))
+}
+
+logL <- function(lambda,x){
+  # Remember x must be a whole number.
+  sum(log((lambda^x/factorial(x))*exp(-lambda)))
+}
+```
+
+
+```{r}
+parm.l <- seq(0,10,0.001)
+
+c <- sum(storms)
+best.l <- c/21
+
+y.L <- as.numeric(lapply(parm.l,FUN=L,x=storms))
+y.logL <- as.numeric(lapply(parm.l,FUN=logL,x=storms))
+```
+
+
+```{r}
+par(mfrow = c(1,2), mar=c(2.5,2.5,3,0.25))
+plot(parm.l,y.logL,type='l',main='logLikelihood',ylim=c(-100,-40))
+abline(v=best.l,col=2)
+plot(parm.l,y.L,type='l',main='Likelihood')
+abline(v=best.l,col=2)
+
+best.l
+mean(storms)
+
+#You should get c=124 and b=144.5211
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

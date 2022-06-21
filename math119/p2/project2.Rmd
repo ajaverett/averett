@@ -1,0 +1,225 @@
+---
+title: "How long does an LED light bulb last?"
+output:
+  rmdformats::readthedown:
+  code_folding: hide
+keep_md: true
+---
+  
+  
+**Bringing it All Together (and answer a question)**
+  
+------------------------------------------------------------------------
+  
+# Background
+  
+## The given lightbulb data
+  
+  Throughout this project, we will analyze the brightness of LED light bulbs over time. Interestingly, LED light bulbs will increase in brightness before their steady decrease and ultimate burnout. This process may last up to three years. Since it is not feasible to test the bulb lifetime- this project will utilize mathematical models to predict the lifespan of some of these bulbs.
+
+In this report, the led_bulb function will be used to generate random bulbs for predictions. The âheadâ function below verifies that the data frame, bulb, includes the columns: id, hours, intensity, demonormalized_intensity, and percent_intensity.
+
+```{r}
+library(pander)
+library(data4led)
+bulb <- led_bulb(1,seed = 196)
+
+head(bulb) |> pander()
+```
+
+The code below creates a plot from the bulb data frame. The plot has hours on the horizontal axis (x-axis) and percent_intensity on the vertical axis (y-axis).
+
+```{r}
+t <- bulb$hours
+y <- bulb$percent_intensity
+
+par(mfrow = c(1,2),mar = c(2,2,3,0.25),oma = rep(0.5,4))
+plot(t,y,xlab = "Hour ", ylab = "Intensity(%) ", pch = 16,main = '')
+plot(t,y,xlab = "Hour ", ylab = "Intensity(%) ", pch = 16, xlim  =  c(-10,80000),ylim  =  c(-10,120))
+```
+
+## Introducing the five general models.
+
+Below is a list of the five general models that are going to be analyzed in order to find the parameters that fit the data the best.
+
+$f_1(t; a_0,a_1) = a_0 + a_1t$ where $t\geq0$
+  
+  $f_2(t; a_0,a_1) = a_0 + a_1t$ where $t\geq0$
+  
+  $f_4(t; a_0,a_1,a_2) = a_0 + a_1t +a_2\ln(0.005t+1)$ where $t\geq0$
+  
+  $f_5(t; a_1) =100e^{-0.00005t} + a_1te^{-0.00005t}$ where $t\geq0$
+  
+  $f_6(t; a_1,a_2) = 100 +a_1t +a_2(1-e^{-0.0003t})$ where $t\geq0$
+  
+  ## How to fit models
+  
+  The goal of this section is to explain a generalized approach to fit models to data. We will call the given points of data $(t_i, y_i)$ for $i = 1, 2, 3, ... , 44$ since there are 44 data points where $t$ refers to how many hours of duration a light bulb has been on and $y$ refers to the percent intensty relative to the starting intensity- thus the y-intercept on the generalized models has already been pre-set to 100.
+
+The given function models, $f_j(t)\text{ where } t >= 0$ for $j = 1, 2, 4, 5, 6$, are used to predict a $y$.
+
+To calculate the probability and liklihood, this analysis will be using the probability density function, $p(r) = \frac{1}{\sqrt{2\pi\sigma^2}}e^{-\frac{(r-\mu)^2}{2\sigma^2}}$.
+
+-   For this function, $\mu$ refers to the mean and will be set at 0 and $\sigma$ refers to the standard deviation and will be set to 1 for simpler calculation.
+-   For this function, $r$ refers to the error or residual of a given point calculated as such, $y_i - f(x_i; a_k)$. ($k$ refers to the parameters given a function- either 1 or 2 parameters)
+
+This means we can set up a probability function using the following model to calculate the probability for any point for a set model: $p(t, y; a) = \frac{1}{\sqrt{2\pi}}e^{-\frac{1}{2}(y_i - f_j(t_i; a_k))^2}$.
+
+Similarly, we can set up a joint probability function $J$ using the same model multiplied by itself for every point as an input assuming set parameters: $J(a; t, y) = \prod_{i = 1}^{44}\left(\frac{1}{\sqrt{2\pi}}e^{-\frac{1}{2}(y_i - f_j(t_i; a_k))^2}\right)$.
+
+Conversely, we can set up a likelihood function $L$ using the same model with its inputs and parameters switched since we know which points we need to fit the model to: $L(a; t, y) = \prod_{i = 1}^{44}\left(\frac{1}{\sqrt{2\pi}}e^{-\frac{1}{2}(y_i - f_j(t_i; a_k))^2}\right)$
+  
+  Since the inputs of the likelihood graph represents parameters, and the only input that describes the best fit parameter will not change if we find the natural log of the respective function and use the same input, for convenience, we will use the natural log of each likelihood function to easily find the critical points.
+
+Then we can find the critical point of the log-likelihood function in order to find the best fit parameter. For functions with single inputs, we will simply equal the derivative to zero and solve for the parameter. For functions with multiple inputs, we will have to find the partial derivatives of each function and set up a systems of equations where each partial derivative is equal to zero- thus allowing us to solve for two variables.
+
+Using the respective second derivative test, we can find if the critical points for each function are actually the maximum.
+
+# Fitted models
+
+Below are all 5 fitted functions with their given parameters.
+
+## $f_1(t; a_1 = 0.000151) = 100 +a_1t$
+
+```{r}
+x <- 0:80000
+
+f_1 <- function(t, a0  =  100, a1  =  0.0001514219){
+  a0 + a1*t
+}
+
+par(mfrow = c(1,2),mar = c(2,2,3,0.25),oma = rep(0.5,4))
+plot(t,y,xlab = "Hour ", ylab = "Intensity(%) ", pch = 16,main = '')
+lines(x,f_1(x),col = 2)
+plot(t,y,xlab = "Hour ", ylab = "Intensity(%) ", pch = 16, xlim  =  c(-10,80000),ylim  =  c(-10,120))
+lines(x,f_1(x),col = 2)
+```
+
+## $f_2(t; a_1 = 0.00037,a_2 = -5.714e-08) = 100 +a_1t + a_2t^2$
+
+```{r}
+f_2 <- function(t, a0  =  100, a1  =  0.0003695018, a2  =  -5.713572e-08){
+  a0 + a1*t + a2*t^2
+}
+
+par(mfrow = c(1,2),mar = c(2,2,3,0.25),oma = rep(0.5,4))
+plot(t,y,xlab = "Hour ", ylab = "Intensity(%) ", pch = 16,main = '')
+lines(x,f_2(x),col = 2)
+plot(t,y,xlab = "Hour ", ylab = "Intensity(%) ", pch = 16, xlim  =  c(-10,80000),ylim  =  c(-10,120))
+lines(x,f_2(x),col = 2)
+```
+
+## $f_4(t; a_1 = -7.31e-05,a_2 = 0.268) = 100 +a_1t + a_2\ln(0.005t+1)$
+
+```{r}
+f_4 <- function(t, a0  =  100, a1  =  -7.310545e-05, a2  =  0.2681037){
+  a0 + a1*t + a2*log(0.005*t + 1)
+}
+
+par(mfrow = c(1,2),mar = c(2,2,3,0.25),oma = rep(0.5,4))
+plot(t,y,xlab = "Hour ", ylab = "Intensity(%) ", pch = 16,main = '')
+lines(x,f_4(x),col = 2)
+plot(t,y,xlab = "Hour ", ylab = "Intensity(%) ", pch = 16, xlim  =  c(-10,80000),ylim  =  c(-10,120))
+lines(x,f_4(x),col = 2)
+```
+
+## $f_5(t; a_1 = 0.00568) =100e^{-0.00005t} + a_1te^{-0.00005t}$
+
+```{r}
+f_5 <- function(t, a1 = 0.005681523){
+  100*exp(-0.00005*t) + a1*t*exp(-0.00005*t)
+}
+
+par(mfrow = c(1,2),mar = c(2,2,3,0.25),oma = rep(0.5,4))
+plot(t,y,xlab = "Hour ", ylab = "Intensity(%) ", pch = 16,main = '')
+lines(x,f_5(x),col = 2)
+plot(t,y,xlab = "Hour ", ylab = "Intensity(%) ", pch = 16, xlim = c(-10,80000),ylim = c(-10,120))
+lines(x,f_5(x),col = 2)
+
+```
+
+## $f_6(t; a_1 = -0.0002962487,a_2 = 2.472753) = 100 +a_1t +a_2(1-e^{-0.0003t})$
+
+```{r}
+f_6 <- function(t, a1 = -0.0002962487, a2 = 2.472753){
+  100 + a1*t + a2*(1 - exp(-0.0003*t))
+}
+
+par(mfrow = c(1,2),mar = c(2,2,3,0.25),oma = rep(0.5,4))
+plot(t,y,xlab = "Hour ", ylab = "Intensity(%) ", pch = 16,main = '')
+lines(x,f_6(x),col = 2)
+plot(t,y,xlab = "Hour ", ylab = "Intensity(%) ", pch = 16, xlim = c(-10,80000),ylim = c(-10,120))
+lines(x,f_6(x),col = 2)
+```
+
+# Lightbulb Calculations
+
+## Calculating intensity after 25,000 hours
+
+*Lightbulb intensity after 25,000 hours*
+  
+  ```{r}
+Models <- c("Model 1", "Model 2", "Model 4", "Model 5", "Model 6")
+Values <- c(f_1(25000),f_2(25000), f_4(25000), f_5(25000), f_6(25000)) |> round(2) |> stringr::str_c("% intensity")
+data.frame(Models, Values) |> pander()
+
+```
+
+## Calculating duration at intensity of 80 percent
+
+The following code will calculate the respective model's prediction when the light bulb will burn out.
+
+```{r class.source = 'fold-hide'}
+f_1a <- function(x){
+  f_1(x) - 80
+}
+a <- uniroot(f_1a, c(-1000000,0))$root
+
+
+f_2a <- function(x){
+  f_2(x) - 80
+}
+b <- uniroot(f_2a, c(0,40000))$root
+
+
+f_4a <- function(x){
+  f_4(x) - 80
+}
+c <- uniroot(f_4a, c(8000,1000000))$root
+
+f_5a <- function(x){
+  f_5(x) - 80
+}
+d <- uniroot(f_5a, c(0,30000))$root
+
+
+f_6a <- function(x){
+  f_6(x) - 80
+}
+e <- uniroot(f_6a, c(0,80000))$root
+```
+
+**Predicted burn out hour**
+
+```{r}
+Duration <- c(a,b,c,d,e) |> round(2) |>  stringr::str_c(" hours")
+data.frame(Models, Duration) |> pander()
+```
+
+*Note: Model one indicates that the lightbulb will burn out in a negative time.*
+
+Since the first model does not reflect reality, I will not include it in the following calculation. The amount of time it takes for a light bulb that follows the behavior as stated in this analysis according to these fitted models assuming this is accurate negating innacurate models is 22,220 hours- or just over 2 and a half years.
+
+```{r}
+mean(b,c,d,e)
+```
+
+## Description
+
+The data depends on the general model we assume. This is an important concept to understand when workin with models and data because predictions will only work if the model is useful enough to reflect reality appropriately. If a model is chosen that does not appropriately relfect reality, predictions become exponentially useless. If a fitted model is inconsistent with known truth about a situation, it should not be used as a model in that situation. If we know that light bulb behavior, according to this project, behaves in a certain way in which it gets brighter and then dimmer until burnout, all models, except $f_1$ technically match this description. While $f_1$ progressively gets brighter, all other models shown here get brighter after a brief amount of time, and then progressively get dimmer until burnout.
+
+# Reflection
+
+This was a very fun project. I have always understood the general idea around linear regression, however I did not understand the fundamental calculus behind it. This project was incredible in allowing me to understand the fundamental algebra, probability, and proper mathematical notation to start communicating and understanding this information. I would like to remember the general processes to fit a model to any set of data points using calculus.
+
+Beyond the math skills I learned in this project, I gained skills revolving around my time-management as I had to mean deadlines. During this process, I received much feedback which allowed my mathematical notation to be more clear and accurate. Finally, I feel that while this was not a difficult project, it was a project that required consistent dedication to in order to complete. This required the self-direction and motivational skills I had to follow the directions well enough to finish the project.
