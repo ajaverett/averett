@@ -2,13 +2,18 @@
 title: "Aj Averett's Repository"
 format: html
 editor: visual
+theme: lux
 ---
 
-# Resume
+## Selected Course Work and Resume
 
-# Selected Course Work
+------------------------------------------------------------------------
 
-## Applied Calculus for Data Analysis
+### Resume
+
+-   [Aj Averett's Resume](https://ajaverett.github.io/averett/resume/resume_real.pdf)
+
+### Applied Calculus for Data Analysis
 
 **Linear Modelling of LED Light-bulb Data**
 
@@ -19,16 +24,18 @@ editor: visual
 
 **Distribution Modeling of Toxic Soil Data**
 
--   Part One
--   Part Two
--   Cohesive Analysis
+-   [Part One](https://ajaverett.github.io/averett/math119/p3/p3t1b.html)
+-   [Part Two](https://ajaverett.github.io/averett/math119/p3/p3t2.html)
+-   [Cohesive Analysis](https://ajaverett.github.io/averett/math119/p3/p3.html)
 
-## Data Wrangling and Visualization
+### Data Wrangling and Visualization
+
+**Case Studies**
 
 -   [Height Over Time](https://ajaverett.github.io/averett/ds350/CS3.html)
 
 -   [USA Cities Report](https://ajaverett.github.io/averett/ds350/CS5.html)
 
--   IBC Revenue over time
+-   [IBC Revenue over time](https://ajaverett.github.io/averett/ds350/CS6.html)
 
-## Intermediate Statistics
+-   [Regular Expression in Scripture](https://ajaverett.github.io/averett/ds350/CS7.html)
