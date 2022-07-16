@@ -1,0 +1,34 @@
+---
+title: "Aj Averett's Repository"
+format: html
+editor: visual
+---
+
+# Resume
+
+# Selected Course Work
+
+## Applied Calculus for Data Analysis
+
+**Linear Modelling of LED Light-bulb Data**
+
+-   [Part One](https://ajaverett.github.io/averett/math119/p2/p2t1.html)
+-   [Part Two](https://ajaverett.github.io/averett/math119/p2/p2t2.html)
+-   [Part Three](https://ajaverett.github.io/averett/math119/p2/p2t3.html)
+-   [Cohesive Analysis](https://ajaverett.github.io/averett/math119/p2/project2.html)
+
+**Distribution Modeling of Toxic Soil Data**
+
+-   Part One
+-   Part Two
+-   Cohesive Analysis
+
+## Data Wrangling and Visualization
+
+-   [Height Over Time](https://ajaverett.github.io/averett/ds350/CS3.html)
+
+-   [USA Cities Report](https://ajaverett.github.io/averett/ds350/CS5.html)
+
+-   IBC Revenue over time
+
+## Intermediate Statistics
