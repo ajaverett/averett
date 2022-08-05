@@ -12,15 +12,14 @@ output:
 
 -   [Aj Averett's Resume](https://ajaverett.github.io/averett/resume/resume_real.pdf)
 
-## Projects
+## Personal Projects
 
 -   [Pandas Cheatsheet](https://ajaverett.github.io/Pandas_cheatsheet)
 
--   [Machine Learning Introduction and Explanation (Using the RandomForestClassifier)](https://ajaverett.github.io/averett/fun/comma.html)
+-   [Machine Learning Intro and Explanation (Using the RandomForestClassifier)](https://ajaverett.github.io/averett/fun/comma.html)
 
 ## Selected Course Work
 
-------------------------------------------------------------------------
 ### Applied Calculus for Data Analysis
 
 **Linear Modelling of LED Light-bulb Data**
