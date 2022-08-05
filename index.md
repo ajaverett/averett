@@ -20,6 +20,7 @@ output:
 
 ## Selected Course Work
 
+------------------------------------------------------------------------
 ### Applied Calculus for Data Analysis
 
 **Linear Modelling of LED Light-bulb Data**
