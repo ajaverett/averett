@@ -1,18 +1,24 @@
 ---
-title: "Aj Averett’s Repository"
+title: "Aj Averett’s Portfolio"
 output:
   rmdformats::downcute:
     code_folding: show
     keep_md: true
 ---
 
-## Selected Course Work and Resume
-
 ------------------------------------------------------------------------
 
-### Resume
+## Resume
 
 -   [Aj Averett's Resume](https://ajaverett.github.io/averett/resume/resume_real.pdf)
+
+## Projects
+
+-   [Pandas Cheatsheet](https://ajaverett.github.io/Pandas_cheatsheet)
+
+-   [Machine Learning Introduction and Explanation (Using the RandomForestClassifier)](https://ajaverett.github.io/averett/fun/comma.html)
+
+## Selected Course Work
 
 ### Applied Calculus for Data Analysis
 
