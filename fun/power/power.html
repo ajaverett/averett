@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-0.9.587">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>An Introduction to the Triangle of Power</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+</style>
+
+
+<script src="power_files/libs/clipboard/clipboard.min.js"></script>
+<script src="power_files/libs/quarto-html/quarto.js"></script>
+<script src="power_files/libs/quarto-html/popper.min.js"></script>
+<script src="power_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="power_files/libs/quarto-html/anchor.min.js"></script>
+<link href="power_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="power_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="power_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="power_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="power_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet">
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+</head>
+
+<body class="fullcontent">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">An Introduction to the Triangle of Power</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    
+  </div>
+  
+
+</header>
+
+<section id="exponents-logs-and-roots" class="level1">
+<h1>Exponents, Logs, and Roots</h1>
+<p>There are three general ways to describe the following mathematical equality:</p>
+<p><span class="math display">\[
+\begin{gather*}
+\underbrace{\text{  }2 \times 2 \times 2}_\text{3} = 8 \\
+\textit{(2 multiplied by itself 3 times equals 8)}
+\end{gather*}
+\]</span></p>
+<ul>
+<li><strong>2</strong> multiplied by itself <strong>3</strong> times equals <em>what</em>? (answer is 8)</li>
+<li><em>what</em> multiplied by itself <strong>3</strong> times equals <strong>8</strong>? (answer is 2)</li>
+<li>multiply <strong>2</strong> by itself <em>how many times</em> to equal <strong>8</strong>? (answer is 3)</li>
+</ul>
+<p>or in matematical notation:</p>
+<ul>
+<li><strong>Exponents</strong> <span class="math inline">\(2^3=8\)</span></li>
+<li><strong>Logarithms</strong> <span class="math inline">\(\sqrt[3]8=2\)</span></li>
+<li><strong>Roots</strong> <span class="math inline">\(\log_2(8) = 3\)</span></li>
+</ul>
+<p>It is unfortunate that all three of these relationships use different notation types to represent the same truism that <span class="math inline">\(2\times2\times2=8\)</span>. Various websites and media have explored alternative ways to represent this relationship. The one explored in this article is the <strong>Triangle of Power</strong>.</p>
+</section>
+<section id="the-triangle-of-power-_astackrelbtriangle-_c" class="level1">
+<h1>The Triangle of Power… <span class="math inline">\(_{a}\stackrel{b}\triangle _{c}\)</span></h1>
+<p>Take the equation, <span class="math inline">\(2\times2\times2=8\)</span>. Using new notation, I will represent this relationship in a triad as so:</p>
+<p><span class="math display">\[
+\begin{align*}
+&amp; _{2}\stackrel{3}\triangle _{8}
+\end{align*}
+\]</span></p>
+<p>This means that I can represent each individual description (exponents, logs, and roots) as so:</p>
+<p><span class="math display">\[
+\begin{align*}
+&amp; 2^3 = 8 &amp; \Leftrightarrow {} \stackrel{3}{_2\triangle_{\phantom{c}}} = 8 \\
+&amp; \sqrt[3]{8} = 2 &amp; \Leftrightarrow {} \stackrel{3}{_\phantom{a}\triangle_{8}} = 2\\
+&amp; \log_2\left(8\right) = 3 &amp; \Leftrightarrow {} \stackrel{}{_2\triangle_{8}} = 3\\
+\end{align*}
+\]</span></p>
+<p>We can use this new notation with the variables <span class="math inline">\(a\)</span>, <span class="math inline">\(b\)</span>, and <span class="math inline">\(c\)</span> to make this relationship more general.</p>
+<p><span class="math display">\[
+\begin{align*}
+&amp; a^b = c &amp; \Leftrightarrow {} \stackrel{b}{_a\triangle_{\phantom{c}}} = c \\
+&amp; \sqrt[b]{c} = a &amp; \Leftrightarrow {} \stackrel{b}{_\phantom{a}\triangle_{c}} = a\\
+&amp; \log_a\left(c\right) = b &amp; \Leftrightarrow {} \stackrel{}{_a\triangle_{c}} = b
+\end{align*}
+\]</span></p>
+</section>
+<section id="properties-of-these-operators-in-standard-notation" class="level1">
+<h1>Properties of these operators (in standard notation)</h1>
+<section id="a-remains-constant" class="level2">
+<h2 class="anchored" data-anchor-id="a-remains-constant"><span class="math inline">\(a\)</span> remains constant</h2>
+<p><span class="math display">\[
+\begin{align*}
+&amp;\text{Properties of Logarithms}
+&amp;\text{Properties of Exponents}
+\\\\
+&amp;
+\log_a(x\times y) = \log_a(x) + \log_b(x)
+&amp;
+a^{x + y} = a^x \times a ^y
+\\\\
+&amp;
+\log_a(\frac{x}{y}) = \log_a(x) - \log_b(x)
+&amp;
+a^{x - y} = \frac{a^x}{a^y}
+\end{align*}
+\]</span></p>
+</section>
+<section id="b-remains-constant" class="level2">
+<h2 class="anchored" data-anchor-id="b-remains-constant"><span class="math inline">\(b\)</span> remains constant</h2>
+<p><span class="math display">\[
+\begin{align*}
+&amp;\text{Properties of Exponents}
+&amp;\text{Properties of Roots}
+\\\\
+&amp;   xy^b = x^b \times y^b
+&amp;   \sqrt[b]{x\times y} = \sqrt[b]{x} \times \sqrt[b]{y}
+\\\\
+&amp;   \left(\frac{x}{y}\right)^b = \frac{x^b}{y^b}
+&amp;   \sqrt[b]{\frac{x}{y}} = \frac{\sqrt[b]{x}}{\sqrt[b]{y}}
+\end{align*}
+\]</span></p>
+</section>
+<section id="c-remains-constant" class="level2">
+<h2 class="anchored" data-anchor-id="c-remains-constant"><span class="math inline">\(c\)</span> remains constant</h2>
+<p><span class="math display">\[
+\begin{align*}
+&amp;\text{Properties of Logarithms}
+&amp;\text{Properties of Roots}
+\\\\
+&amp;   \log_{x\times y}(c) = \left(\left(\log_xc\right)^{-1} + \left(\log_yc\right)^{-1}\right)^{-1}
+&amp;   \sqrt[(x^{-1}+ y^{-1})^{-1}]{c} = \sqrt[x]{c} \times \sqrt[y]{c}
+\\\\
+&amp;   \log_{\frac{x}{y}}(c) = \left(\left(\log_xc\right)^{-1} - \left(\log_yc\right)^{-1}\right)^{-1}
+&amp;   \sqrt[(x^{-1}- y^{-1})^{-1}]{c} = \frac{\sqrt[x]{c}}{\sqrt[y]{c}}
+\end{align*}
+\]</span></p>
+</section>
+</section>
+<section id="properties-of-these-operators-in-power-triangle-notation" class="level1">
+<h1>Properties of these operators (in power triangle notation)</h1>
+<section id="a-remains-constant-1" class="level2">
+<h2 class="anchored" data-anchor-id="a-remains-constant-1"><span class="math inline">\(a\)</span> remains constant</h2>
+<p><span class="math display">\[
+\begin{align*}
+&amp;\text{Properties of Logarithms}
+&amp;\text{Properties of Exponents}
+\\\\
+&amp;
+_{a}
+\stackrel{\phantom{b}}
+\triangle _{xy}
+={}
+_{a}\stackrel{\phantom{b}}\triangle _{x} +{}
+_{a}\stackrel{\phantom{b}}\triangle _{y}
+&amp;
+_{a}
+\stackrel{x+y}
+\triangle _{\phantom{c}}
+={}
+_{a}\stackrel{x}\triangle _{\phantom{c}} \times{}
+_{a}\stackrel{y}\triangle _{\phantom{c}}
+\\\\
+&amp;_{a}
+\stackrel{\phantom{b}}
+\triangle _{\frac{x}{y}}
+={}
+_{a}\stackrel{\phantom{b}}\triangle _{x} -{}
+_{a}\stackrel{\phantom{b}}\triangle _{y}
+&amp;
+_{a}
+\stackrel{x-y}
+\triangle _{\phantom{c}}
+={}
+\frac
+{_{a}\stackrel{x}\triangle _{\phantom{c}}}
+{_{a}\stackrel{y}\triangle _{\phantom{c}}}
+\end{align*}
+\]</span></p>
+</section>
+<section id="b-remains-constant-1" class="level2">
+<h2 class="anchored" data-anchor-id="b-remains-constant-1"><span class="math inline">\(b\)</span> remains constant</h2>
+<p><span class="math display">\[
+\begin{align*}
+&amp;\text{Properties of Exponents}
+&amp;\text{Properties of Roots}
+\\\\
+&amp;
+_{x\times y}
+\stackrel{b}
+\triangle _{\phantom{c}}
+={}
+_{x}\stackrel{b}\triangle _{} \times{}
+_{y}\stackrel{b}\triangle _{}
+&amp;
+_{\phantom{a}}
+\stackrel{b}
+\triangle _{x\times y}
+={}
+_{\phantom{x}}\stackrel{b}\triangle _{x} \times{}
+_{\phantom{x}}\stackrel{b}\triangle _{y}
+\\\\
+&amp;_{\frac{x}{y}}
+\stackrel{b}
+\triangle _{\phantom{c}}
+={}
+\frac
+{_{x}\stackrel{b}\triangle _{\phantom{c}} }
+{_{y}\stackrel{b}\triangle _{\phantom{c}} }
+&amp;
+_{\phantom{a}}
+\stackrel{b}
+\triangle _{\frac{x}{y}}
+=
+\frac
+{_{\phantom{a}}\stackrel{b}\triangle _{x}}
+{_{\phantom{a}}\stackrel{b}\triangle _{y}}
+\end{align*}
+\]</span></p>
+</section>
+<section id="c-remains-constant-1" class="level2">
+<h2 class="anchored" data-anchor-id="c-remains-constant-1"><span class="math inline">\(c\)</span> remains constant</h2>
+<p><span class="math display">\[
+\begin{align*}
+&amp;\text{Properties of Logarithms}
+&amp;\text{Properties of Roots}
+\\\\
+&amp;
+_{x\times y}
+\stackrel{\phantom{b}}
+\triangle _{c}
+={}
+\left(
+\left( _{x}\stackrel{}\triangle _{c}\right)^{-1} +{}
+\left(_{y}\stackrel{}\triangle _{c}\right)^{-1}
+\right)^{-1}
+&amp;
+_{\phantom{a}}
+\stackrel{
+  \left(x^{-1}+y^{-1}\right)^{-1}
+}
+\triangle _{c}
+={}
+_{\phantom{x}}\stackrel{x}\triangle _{c} \times{}
+_{\phantom{x}}\stackrel{y}\triangle _{c}
+\\\\
+&amp;
+_{\frac{x}{y}}
+\stackrel{\phantom{b}}
+\triangle _{c}
+={}
+\left(
+\left( _{x}\stackrel{}\triangle _{c}\right)^{-1} -{}
+\left(_{y}\stackrel{}\triangle _{c}\right)^{-1}
+\right)^{-1}
+&amp;
+_{\phantom{a}}
+\stackrel{
+  \left(x^{-1}-y^{-1}\right)^{-1}
+}
+\triangle _{c}
+={}
+\frac
+{_{\phantom{x}}\stackrel{x}\triangle _{c} }
+{_{\phantom{x}}\stackrel{y}\triangle _{c}}
+\end{align*}
+\]</span></p>
+</section>
+</section>
+<section id="inverse-identities" class="level1">
+<h1>Inverse identities</h1>
+<p>Inverse identities are as follows below:</p>
+<p><span class="math display">\[
+\begin{align*}
+a &amp;= \sqrt[b]{a^b} &amp;=\sqrt[log_a(c)]{c}
+\\\\
+b &amp;= \log_a(a^b) &amp;=\log_{\sqrt[a]{c}}(c)
+\\\\
+c &amp;= (\sqrt[b]{c})^c &amp;=a^{\log_a(c)}
+\\\\
+\end{align*}
+\]</span></p>
+</section>
+<section id="inverse-identities-1" class="level1">
+<h1>Inverse identities</h1>
+<p>Inverse identities are as follows below:</p>
+<p>e.g.&nbsp;<span class="math inline">\(a = f(f^{-1}(a))\)</span></p>
+<p><span class="math display">\[
+\begin{align*}
+a &amp;= \text{ }
+_{\phantom{a}}
+\stackrel{b}
+\triangle _{    _{a}\stackrel{b}\triangle _{\phantom{c}}    }
+\text{ } &amp;= \text{ }
+_{\phantom{a}}
+\stackrel{_{a}\stackrel{\phantom{b}}\triangle _{c}}
+\triangle _{c} \\\\
+b &amp;= \text{ }
+_{    _{\phantom{a}}\stackrel{b}\triangle _{c}    }
+\stackrel{\phantom{b}}
+\triangle _{c}
+\text{ } &amp;= \text{ }
+_{a}
+\stackrel{\phantom{b}}
+\triangle _{    _{a}\stackrel{b}\triangle _{\phantom{c}}    } \\\\
+c &amp;= \text{ }
+_{    _{\phantom{a}}\stackrel{b}\triangle _{c}    }
+\stackrel{b}
+\triangle _{\phantom{c}}
+\text{ } &amp;= \text{ }
+_{a}
+\stackrel{    _{a}\stackrel{\phantom{b}}\triangle _{c}    }
+\triangle _{\phantom{c}} \\\\
+\end{align*}
+\]</span></p>
+<p>The inverse identities above can be displayed as such in the chart below:</p>
+<p><img src="top.png" class="img-fluid"></p>
+<p><span class="math inline">\(_{a}\stackrel{b}\triangle _{c}\)</span></p>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
