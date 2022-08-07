@@ -16,7 +16,9 @@ output:
 
 -   [Pandas Cheatsheet](https://ajaverett.github.io/Pandas_cheatsheet)
 
--   [Machine Learning Intro and Explanation (Using the RandomForestClassifier)](https://ajaverett.github.io/averett/fun/comma.html)
+-   [Machine Learning Intro and Explanation (Using the RandomForestClassifier)](https://ajaverett.github.io/averett/fun/comma/comma.html)
+
+-   [Triangle of Power Introduction](https://ajaverett.github.io/averett/fun/power/power.html)
 
 ## Selected Course Work
 
