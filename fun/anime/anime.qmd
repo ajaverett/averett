@@ -1,21 +1,32 @@
-#%%
-import zipfile
-from kaggle.api.kaggle_api_extended import KaggleApi
+---
+title: "Regex, MAL, and Anime Birthdays"
+format: html
+jupyter: python3
+---
 
-#%%
-api = KaggleApi()
-api.authenticate() 
 
-#%%
-api.dataset_download_file('andreuvallhernndez/myanimelist-jikan','characters.csv')
-with zipfile.ZipFile('characters.csv.zip','r') as zipref:\
-    zipref.extractall()
 
-#%%
-api.dataset_download_file('andreuvallhernndez/myanimelist','anime.csv')
-with zipfile.ZipFile('anime.csv.zip','r') as zipref:\
-    zipref.extractall()
+```{python}
+# #%%
+# import zipfile
+# from kaggle.api.kaggle_api_extended import KaggleApi
 
+# #%%
+# api = KaggleApi()
+# api.authenticate() 
+
+# #%%
+# api.dataset_download_file('andreuvallhernndez/myanimelist-jikan','characters.csv')
+# with zipfile.ZipFile('characters.csv.zip','r') as zipref:\
+#     zipref.extractall()
+
+# #%%
+# api.dataset_download_file('andreuvallhernndez/myanimelist','anime.csv')
+# with zipfile.ZipFile('anime.csv.zip','r') as zipref:\
+#     zipref.extractall()
+```
+
+```{python}
 #%%
 import pandas as pd
 import numpy as np
@@ -96,6 +107,14 @@ alt.Chart(char_bday3).mark_bar().encode(
     y='freq'
 )
 
+alt.Chart(char_bday3).mark_line().encode(
+    x='bday',
+    y='freq'
+).interactive()
+```
 
 
-# %%
+
+```{python}
+
+```

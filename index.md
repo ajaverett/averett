@@ -20,6 +20,8 @@ output:
 
 -   [Triangle of Power Introduction](https://ajaverett.github.io/averett/fun/power/power.html)
 
+-   [Regex, MAL, and Anime Birthdays](https://ajaverett.github.io/averett/fun/anime/anime.html)
+
 ## Selected Course Work
 
 ### Applied Calculus for Data Analysis
