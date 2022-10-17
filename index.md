@@ -22,6 +22,8 @@ output:
 
 -   [Regex, MAL, and Anime Birthdays](https://ajaverett.github.io/averett/fun/anime/anime.html)
 
+-   [Understanding the p-value](https://ajaverett.github.io/averett/fun/p-values/pval.html)
+
 ## Selected Course Work
 
 ### Applied Calculus for Data Analysis
