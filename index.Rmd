@@ -20,7 +20,7 @@ output:
 
 -   [Triangle of Power Introduction](https://ajaverett.github.io/averett/fun/power/power.html)
 
--   [Regex, MAL, and Anime Birthdays](https://ajaverett.github.io/averett/fun/anime/anime.html)
+-   [Regex, MAL, and Anime Birthdays (WIP)](https://ajaverett.github.io/averett/fun/anime/anime.html)
 
 -   [Understanding the p-value](https://ajaverett.github.io/averett/fun/p-values/pval.html)
 
