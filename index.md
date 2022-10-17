@@ -14,13 +14,13 @@ output:
 
 ## Personal Projects
 
--   [Pandas Cheatsheet](https://ajaverett.github.io/Pandas_cheatsheet)
+-   [Pandas Cheatsheet](https://ajaverett.github.io/Pandas_cheatsheet) and [Pandas-v-Tidyverse](https://ajaverett.github.io/averett/fun/pandasvtidy/pandasvtidyverse.html)
 
 -   [Machine Learning Intro and Explanation (Using the RandomForestClassifier)](https://ajaverett.github.io/averett/fun/comma/comma.html)
 
 -   [Triangle of Power Introduction](https://ajaverett.github.io/averett/fun/power/power.html)
 
--   [Regex, MAL, and Anime Birthdays](https://ajaverett.github.io/averett/fun/anime/anime.html)
+-   [Regex, MAL, and Anime Birthdays (WIP)](https://ajaverett.github.io/averett/fun/anime/anime.html)
 
 -   [Understanding the p-value](https://ajaverett.github.io/averett/fun/p-values/pval.html)
 
