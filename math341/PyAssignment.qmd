@@ -1,0 +1,187 @@
+---
+title: "Python Assignment 1"
+author: Aj Averett
+format: html
+---
+<!-- https://byui.instructure.com/courses/213342/assignments/10567925?module_item_id=29284298 -->
+# Imports and Instruction
+
+```{python}
+import numpy as np
+import sympy as sp
+from sympy import init_printing, Matrix 
+init_printing() 
+```
+
+**Defining a Matrix**
+```{python}
+A=np.array([[1,2,3],[4,5,6],[7,8,9],[2,4,6]])
+A = Matrix(A)
+
+print(f"{A[0]}, {A[:,0]}, {A[1,0]}") # Extracting elements from a matrix
+```
+
+**Defining a Vector**
+
+```{python}
+x1, x2, x3 = [1, 2, 3], np.array([1,2,3]), np.array([[1],[2],[3]])
+x1, x2, x3 = Matrix(x1), Matrix(x2), Matrix(x3)
+
+#Showing these three methods produce equivalent vectors
+print(f"{x1==x2}, {x1==x3}") 
+print(f"{x1[0]}, {x1[1]}, {x1[2]}")# Extracting elements from a vector
+```
+
+# Question 1
+Write the command that returns the entry of the matrix A that is in the 4th row and 2nd column.
+```{python}
+print(A[3,1]) #Because of Zero-Indexing, arguments = n-1 
+```
+
+# Question 2
+In what way did the matrix A change? 
+```{python}
+A=np.array([[1,2,3],[4,5,6],[7,8,9]]) #Matrix A is defined
+A[2]=[7,8,10] #The third row is of A is assigned as [7,8,10]
+A[1]=[1,1,1] #The second row is of A is assigned as [1,1,1]
+Matrix(A)
+```
+
+# Question 3
+What do the following lines of code do? Explain.
+```{python}
+A=np.array([[1,2,3],[4,5,6],[7,8,9]])
+# The code below preforms Gaussian elimination on matrix A
+A[1]=A[1]+A[0]*(-A[1,0]) # R_2 = R_2 + R_1 * negative of 1st element of R_2 
+A[2]=A[2]+A[0]*(-A[2,0]) # R_3 = R_3 + R_1 * negative of 1st element of R_3
+A[2]=A[2]+A[1]*(-A[2,1]/A[1,1]) 
+# R_3 = R_3 + R_1 * (negative of 2nd element of R_3 /2nd element of R_2)
+
+Matrix(A)
+```
+
+
+# Question 4
+Find the solution to $A\vec{x} = \vec{b}$.
+```{python}
+A = np.array([
+    [1,2,3],
+    [4,5,6],
+    [7,8,10]])
+
+b = np.array([-1,4,-10])
+x = np.linalg.solve(A, b)
+
+print(Matrix(A)*Matrix(x) == Matrix(b))
+Matrix(x.round(3))
+```
+
+# Question 5
+Verify your solution using an operator
+```{python}
+print(Matrix(A @ x) == Matrix(b))
+```
+
+# Question 6
+Verify that $\vec{x} = A^{-1}\vec{b}$ using NumPy
+```{python}
+A_inverse = np.linalg.inv(A)
+Matrix((A_inverse @  b ).round(3))
+```
+
+# Question 7
+
+Given $k$ points in $\mathbb{R}^2$, we can find a polynomial of degree $k−1$ that passes through all k points. Find the equation of the 5th degree polynomial that passes through the points $(1, 1)$, $(10, 5)$, $(−10, 6)$, $(2, 100)$, $(−2, −30)$, and $(−1, 60)$. Round your coefficients to three decimal places.
+
+```{python}
+from sympy.printing.latex import print_latex
+from sympy import linsolve
+
+coord = {1:[1, 1],      2:[10, 5],
+         3:[-10, 6],    4:[2, 100],
+         5:[-2, -30],   6:[-1, 60],}
+
+
+# Define A
+a_i = np.array([])
+
+for i in range(len(coord)):
+    a_i = np.append(a_i, (coord[i+1][0]))
+
+A = Matrix(np.array([a_i**5,    a_i**4, 
+                     a_i**3,    a_i**2, 
+                     a_i**1,    a_i**0]).T)
+
+
+# Define b
+b = np.array([])
+
+for i in range(len(coord)):
+    b = np.append(b, (coord[i+1][1]))
+
+b = Matrix(b)
+
+
+# Solve for x
+c1, c2, c3, c4, c5, c6 = sp.symbols("c1 c2 c3 c4 c5 c6")
+system = A, b
+x = str(linsolve(system,c1, c2, c3, c4, c5, c6))\
+    .replace('{','').replace('}','')\
+    .replace('(','').replace(')','').split(',')
+
+x_rounded = [round(float(num),3) for num in x]
+```
+
+The solution $\vec{x}$ rounded to three decimal places is:
+```{python}
+Matrix(x_rounded)
+```
+
+Thus the $A\vec{x} = \vec{b}$ form of this would be as so:
+$$
+\left[\begin{matrix}1.0 & 1.0 & 1.0 & 1.0 & 1.0\\100000.0 & 10000.0 & 1000.0 & 100.0 & 10.0\\-100000.0 & 10000.0 & -1000.0 & 100.0 & -10.0\\32.0 & 16.0 & 8.0 & 4.0 & 2.0\\-32.0 & 16.0 & -8.0 & 4.0 & -2.0\\-1.0 & 1.0 & -1.0 & 1.0 & -1.0\end{matrix}\right]\left[\begin{matrix}-0.212\\-0.018\\21.728\\1.591\\-51.015\\28.927\end{matrix}\right]=\left[\begin{matrix}1.0\\5.0\\6.0\\100.0\\-30.0\\60.0\end{matrix}\right]
+$$
+
+This means that the 5th degree polynomial would look as so:
+
+$$
+y = -0.212x^5-0.018x^4+21.728x^3+1.591x^2-51.015x+28.927
+$$
+
+```{python}
+#| echo: false
+
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+def f(x):
+    return -0.212179082491583*x**5 \
+        - 0.0182554713804714*x**4 \
+        + 21.7275620791246*x**3 \
+        + 1.59127735690236*x**2 \
+        - 51.015382996633*x \
+        + 28.9269781144781
+
+x = list(np.arange(-11, 11, 0.1))
+y = list(map(f, x))
+
+sns.lineplot(x=x, y=y)
+plt.vlines([-10,-2,-1,1,2,10], ymin=    min(y), ymax=max(y), colors='r', linestyles='dotted')
+plt.ylim(-40, 110)
+plt.show()
+```
+
+# Question 8
+Find the reduced row echelon form of the following matrix. This matrix is created using list comprehension.
+```{python}
+M=sp.Matrix([[x+5, x-4, (x-2)**2, x**2, x, 1] for x in [1,2,3,4,5,6]])
+M.rref()[0]
+```
+
+# Question 9
+Find the command to evaluate the determinant of a matrix and use it to find the determinant of M.
+```{python}
+M=sp.Matrix([[1, x, x**2, x**3, x**4, x**5] for x in [2,3,4,5,6,7]])
+print(f"The determinant for the matrix defined above is: {M.det()}")
+```
+
