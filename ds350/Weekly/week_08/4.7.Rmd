@@ -1,0 +1,51 @@
+---
+title: '4.7'
+author: "Aj Averett"
+date: '2022-06-09'
+output:
+ html_document:
+  keep_md: true
+  toc: true
+  toc_float: true
+  code_folding: hide
+  fig_height: 6
+  fig_width: 12
+  fig_align: 'center'
+---
+
+```{r setup, include=FALSE, warning=FALSE, message=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(tidyverse)
+library(lubridate)
+library(nycflights13)
+library(riem)
+
+test<- read_csv('https://byuistats.github.io/M335/data/carwash.csv') %>%
+  mutate(time = with_tz(time, tzone = "America/Denver")) %>% 
+  mutate(time = force_tz(time, tzone = "Australia/Lord_Howe")) %>%
+  mutate(time = ceiling_date(time, "hour")) %>% 
+  group_by(time) %>% 
+  mutate(amount = mean(amount)) %>%
+  ungroup() %>% 
+  select(c(time,amount)) %>% 
+  distinct()
+
+riem <- riem_measures(station = "RXE", date_start = date(min(test$time)),   date_end = date(max(test$time))) %>% 
+  drop_na(tmpf) %>% 
+  mutate(time = ceiling_date(valid,"hour")) %>% 
+  group_by(time) %>% 
+  mutate(tmpf = mean(tmpf)) %>%
+  ungroup() %>% 
+  select(c(time,tmpf)) %>% 
+  distinct()
+
+test %>% 
+  inner_join(riem) %>% 
+  ggplot(aes(x = tmpf, y = amount)) +
+  geom_point() 
+  
+```
+

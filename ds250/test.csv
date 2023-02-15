@@ -1,0 +1,13 @@
+index,Region,gadget_type,Units
+0,North,radok,10
+1,South,osmit,12
+2,East,radok,14
+3,West,radok,16
+4,North,osmit,18
+5,South,radok,20
+6,East,osmit,22
+7,West,osmit,24
+8,South,radok,26
+9,East,osmit,28
+10,West,osmit,30
+11,North,osmit,32

@@ -1,0 +1,33 @@
+---
+title: "Untitled"
+author: "Aj Averett"
+date: '2022-05-12'
+output: 
+  html_document:
+    keep_md: true
+---
+
+
+```{r}
+library(tidyverse)
+library(readr)
+library(pander)
+rawstonks <- read_rds("https://github.com/byuistats/data/blob/master/Dart_Expert_Dow_6month_anova/Dart_Expert_Dow_6month_anova.RDS?raw=true") 
+
+stonks <- rawstonks %>% 
+  separate(contest_period, c('date1','date2') ,sep = '-') %>% 
+  separate(date2, c('month','year2') ,sep = -4) %>% 
+  select(-date1) %>% 
+  filter(variable == 'DJIA') %>% 
+  mutate(month = recode(month, "Dec." = 'December', "Febuary" = 'February')) %>% 
+  pivot_wider(names_from = year2,
+              values_from = value) %>% 
+  mutate(moth = fct_relevel(month, month.name)) #stonks%>% View()
+
+stonks$month = factor(stonks$month, levels = month.name)
+
+pander(stonks)
+knitr::kable(stonks)
+
+```
+

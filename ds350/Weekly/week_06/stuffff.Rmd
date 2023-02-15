@@ -1,0 +1,84 @@
+---
+title: "YOUR TITLE"
+author: "YOUR NAME"
+date: "`r format(Sys.time(), '%B %d, %Y')`"
+output:
+ html_document:
+  keep_md: true
+  toc: true
+  toc_float: true
+  code_folding: hide
+  fig_height: 6
+  fig_width: 12
+  fig_align: 'center'
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(Lahman)
+library(tidyverse)
+library(pander)
+
+
+bob <- People %>% #View()
+  filter(nameLast == "Cox",
+         nameFirst == "Bobby") 
+
+bob.id <- bob$playerID
+
+
+temp1 <- AwardsManagers %>% 
+group_by(playerID, lgID) %>% 
+summarise(countawards = n()) %>% 
+ungroup %>% 
+pivot_wider(names_from = "lgID", values_from = "countawards") %>% 
+select(-AL) %>% 
+drop_na() %>% 
+left_join(People %>% select(nameGiven, playerID)) %>% 
+select(nameGiven, NL, ML)
+
+pander(temp1)
+
+# totalawards <- AwardsManagers %>% 
+#   group_by(playerID) %>% 
+#   summarise(countawards = n()) %>% 
+#   left_join(People) %>% 
+#   select(c(playerID, countawards))
+```
+
+
+```{r}
+# Managers %>% 
+#   group_by(playerID) %>% 
+#   summarize(totalgames = sum(G),
+#             totalwins = sum(W)) %>% 
+#   mutate(winpercentage = round(totalwins/totalgames*100)) %>% 
+#   filter(totalgames >= 300) %>% 
+#   left_join(People) %>% 
+#   select(c(nameGiven, nameFirst, nameLast, winpercentage, totalgames, playerID)) %>% 
+#   arrange(desc(winpercentage)) %>%
+#   left_join(totalawards) %>% 
+#   replace_na(list(countawards = 0)) %>%
+#   ggplot(aes(y = winpercentage, x = as.factor(countawards), group = countawards, fill = countawards)) +
+#   geom_boxplot()
+```
+
+tempoemptemptmelorknj
+
+```{r}
+# temp2 <- AwardsManagers %>% 
+#   group_by(playerID, awardID) %>% 
+#   summarise(countawards = n()) %>% 
+#   arrange(desc(countawards)) %>% 
+#   filter(countawards >= 4) %>% 
+#   left_join(People) %>% 
+#   ungroup() %>% 
+#   select(c(nameGiven, awardID, countawards)) %>% 
+#   pivot_longer(names_to = "income", values_to = "count")
+# 
+# pander(temp1)
+```
+

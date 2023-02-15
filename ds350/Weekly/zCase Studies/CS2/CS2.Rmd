@@ -1,0 +1,325 @@
+---
+title: "Reducing Gun Deaths"
+author: "Aj Averett"
+date: '2022-05-06'
+output:
+  rmdformats::readthedown:
+    code_folding: hide
+    keep_md: true
+
+---
+
+```{r setup, include=FALSE, class.source = 'fold-hide'}
+
+knitr::opts_chunk$set(echo = T, message = FALSE, warning = FALSE)
+```
+
+
+# Background data
+
+FiveThirtyEight has compiled deaths by gun between 2012 and 2014 from various databases including the CDC’s Multiple Cause of Death database, the FBI's Uniform Crime Report, MotherJones’s database of public mass shootings, and the University of Maryland’s Global Terrorism Database. Using this compiled database of gun deaths, we can find groups that may be higher risk for a public awareness campaign. This includes data from intent, sex, age, rage, education, etc.
+
+<br>
+ 
+ 
+```{r, fig.keep="none"}
+#{r include=FALSE}
+
+library(tidyverse)
+library(treemap)
+library(d3treeR)
+
+guns <- read_csv('https://raw.githubusercontent.com/fivethirtyeight/guns-data/master/interactive_data.csv') %>% 
+  na_if('None selected')
+
+gunsfull <- read_csv('https://raw.githubusercontent.com/fivethirtyeight/guns-data/master/full_data.csv') 
+
+```
+
+
+## Initial chart
+The chart below, similar to the FiveThirtyEight visualization, gives us insights to the racial breakdown of gun deaths according to each intent category. The following graph uses proportion to make these insights. In order to explore the data- click on each intent. To return to the previous level, Click on the bolded text on the top of the visualization.
+
+<br>
+
+```{r, fig.keep="none"}
+
+# Plot
+g <- treemap(guns,
+    index = c("Intent","Race"),
+    vSize = "Deaths",
+    title = "",
+    palette = "Dark2",
+    border.lwds = 1,                         
+    fontsize.labels = 8.5,
+    fontcolor.labels = "white",
+    bg.labels = c("transparent"),              
+    align.labels = c("left", "top"),                                  
+    overlap.labels = 0.5,
+    inflate.labels = T)  
+
+h <- d3tree2(g, rootname = "Deaths by gun")
+
+```
+
+```{r class.source = 'fold-show'}
+h
+```
+
+
+# Exploratory data analysis
+The following heat map will allow us to see which demographic groups by sex, race, or age group are likely to contribute heavily to the raw number of deaths by gun. The chart below compares age group separated by 15 year intervals and racial category faceted by sex. The lighter the blue color on the chart corresponds to a higher contribution to overall gun deaths.
+
+<br>
+
+
+```{r, fig.width = 10}
+
+gunsfull1 <- gunsfull %>% 
+  mutate(
+    age_range = case_when(
+      (age %in% c(0:14)) ~ "0 - 15",
+      (age %in% c(15:30)) ~ "15 - 30",
+      (age %in% c(30:45)) ~ "30 - 45",
+      (age %in% c(45:60)) ~ "45 - 60",
+      (age %in% c(60:75)) ~ "60 - 75",
+      (age %in% c(75:200)) ~ "75 +",
+    )
+  ) %>% 
+  filter(!is.na(age_range))
+
+
+ggplot(gunsfull1, aes(x = age_range, y = race), stat = Rate) +
+  geom_bin_2d() +
+  facet_grid(.~sex) +
+  labs(title = "Raw Gun Deaths by Sex, Race, and Age",
+       subtitle = "Data represents 2012 - 2014",
+       x = "Age Range (by 15 years)",
+       y = "") +
+  guides(fill = guide_legend(title = "Number of deaths"))
+
+```
+
+<br>
+
+## Posthoc refinement
+Since the goal is to reduce raw gun deaths, the target population can be reduced to the following demographic categories:
+
+* Sex: Males (M)
+* Race: Whites, Blacks
+* Age Group: 15-60ish
+
+<br>
+
+
+```{r, fig.width = 10}
+
+gunsfull2 <- gunsfull %>% 
+  filter(sex == "M") %>% 
+  filter(age %in% c(10:69)) %>% 
+  filter(race %in% c("White","Black","Hispanic")) %>% 
+  mutate(
+    age_range = case_when(
+      (age %in% c(10:14)) ~ "10 - 15",
+      (age %in% c(15:19)) ~ "15 - 20",
+      (age %in% c(20:24)) ~ "20 - 25",
+      (age %in% c(25:29)) ~ "25 - 30",
+      (age %in% c(30:34)) ~ "30 - 35",
+      (age %in% c(35:39)) ~ "35 - 40",
+      (age %in% c(40:44)) ~ "40 - 45",
+      (age %in% c(45:49)) ~ "45 - 50",
+      (age %in% c(50:54)) ~ "50 - 55",
+      (age %in% c(55:59)) ~ "55 - 60",
+      (age %in% c(60:64)) ~ "60 - 65",
+      (age %in% c(65:69)) ~ "65 - 70",
+      )
+  ) %>% 
+  filter(!is.na(age_range))
+
+
+ggplot(gunsfull2, aes(x = age_range, y = race), stat = Rate) +
+  geom_bin_2d() +
+  labs(title = "Raw Gun Deaths of White, Black and Hispanic Men aged 10-70",
+       subtitle = "Data represents 2012 - 2014",
+       x = "Age Range (by 5 years)",
+       y = "") +
+  guides(fill = guide_legend(title = "Number of deaths"))
+```
+
+<br>
+
+
+# Exploring target demographics
+
+From the graph above, we can narrow down the target demographics of gun deaths to White males in their 50's and Black males in their 20's. For further analysis, Black men around their 20's and White men around their 50's will be analyzed to see how to best be targeted.
+
+## White men around their 50's
+From the chart below, we can understand that the majority of deaths for White men in their 50's are from suicide. 
+
+```{r}
+gunsfull3 <- gunsfull %>% 
+  filter(sex == "M") %>% 
+  filter(age %in% c(45:65)) %>% 
+  filter(race == "White") %>% 
+  na_if('Undetermined') %>% 
+  drop_na()
+
+gunsfull3 %>% 
+  ggplot(aes(x = intent, fill = intent)) +
+  geom_bar() +
+  labs(x = "Type of Gun Death",
+       y = "Number of Deaths",
+       subtitle = "Types and Number of Deaths for White Men Between 45 and 65") +
+  theme_classic() + theme(plot.subtitle = element_text(face = "bold"))
+
+```
+
+## Black men around their 20's
+From the chart below, we can understand that the majority of deaths for White men in their 20's are from homicide. 
+
+
+```{r}
+gunsfull4 <- gunsfull %>% 
+  filter(sex == "M") %>% 
+  filter(age %in% c(15:35)) %>% 
+  filter(race == "Black") %>% 
+  na_if('Undetermined') %>% 
+  drop_na()
+
+gunsfull4 %>% 
+  ggplot(aes(x = intent, fill = intent)) +
+  geom_bar() +
+  labs(x = "Type of Gun Death",
+       y = "Number of Deaths",
+       subtitle = "Types and Number of Deaths for Black Men Between 15 and 35") +
+  theme_classic() +  theme(plot.subtitle = element_text(face = "bold"))
+
+```
+
+# Insights
+From the information above, the two demographics that contribute most to raw gun deaths are White men in their 50's and Black men in their 20's. After further exploration, the cause of death between these groups are remarkably different. In White mean in their 50's, the primary cause of gun death was attributed to suicide. Black men in their 20's, conversely, die to guns most often from homicide. 
+
+
+# Seasonal trends
+Time of campaign is important since execution may be more effective during different seasons. A possible limitation for the following graphs is that they do not factor the fact that different seasons and months have different days. This being said, comparing patterns will still be valid since relative trends still happen against each other from the same scale of days.
+```{r}
+
+gunsfull3a <- gunsfull3 %>% 
+  group_by(month) %>% 
+  summarize(deaths = n()) %>% 
+  mutate(
+    season = case_when(
+      month %in% c('12','01','02') ~ "Winter",
+      month %in% c('03','04','05') ~ "Spring",
+      month %in% c('06','07','08') ~ "Summer",
+      month %in% c('09','10','11') ~ "Fall"
+    )
+  ) %>% 
+  group_by(season) %>% 
+  summarize(deaths = sum(deaths)) %>%  
+  mutate(dummy = 'Black deaths by homicide') 
+
+gunsfull4a <- gunsfull4 %>% 
+  group_by(month) %>% 
+  summarize(deaths = n()) %>% 
+  mutate(
+    season = case_when(
+      month %in% c('12','01','02') ~ "Winter",
+      month %in% c('03','04','05') ~ "Spring",
+      month %in% c('06','07','08') ~ "Summer",
+      month %in% c('09','10','11') ~ "Fall"
+    )
+  ) %>% 
+  group_by(season) %>% 
+  summarize(deaths = sum(deaths)) %>%  
+  mutate(dummy = 'White deaths by suicide') 
+
+gunsfull5 <- bind_rows(gunsfull3a, gunsfull4a)
+
+gunsfull5$season <- factor(gunsfull5$season,levels = c("Winter", "Spring", "Summer", "Fall"))
+
+
+ggplot(gunsfull5, aes(x = season, y = deaths, group = dummy, color = dummy)) +
+  geom_line(size = 3) +
+  theme_minimal() +
+  labs(title = "Target group deaths by season",
+       y = "Death count",
+       x = "Season")
+  
+  
+
+```
+
+From the visualization above, we can see that summer is a common season for suicides and spring is a common season for homicides among their respective demographics.
+
+
+## Individual months with target demograhics
+
+```{r}
+gunsfull6a <- gunsfull %>% 
+  filter(sex == "M") %>% 
+  filter(age %in% c(45:65)) %>% 
+  filter(race == "White") %>% 
+  group_by(month) %>% 
+  summarize(deaths = n()) %>%
+  mutate(var = 'test',
+        month = recode(month, '01' = 'January',
+                      '02' = 'February',
+                      '03' =  'March',
+                      '04' =  'April',
+                      '05' =  'May',
+                      '06' =  'June',
+                      '07' =  'July',
+                      '08' =  'August',
+                      '09' =  'September',
+                      '10' =  'October',
+                      '11' =  'November',
+                      '12' =  'December',)
+)
+
+gunsfull6a$month <- factor(gunsfull6a$month,levels = c("January", 'February', 'March', 'April', 'May', 'June', 'July', 'August',  'September', 'October', 'November', 'December'))
+
+
+ggplot(gunsfull6a, aes(x = month, y = deaths, group = var)) +
+    geom_line(size = 3, color = "blue") +
+    theme_minimal() +
+    theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+    labs(title = "Monthly trends of death among older White men to suicide",
+         x = "Month",
+         y = "Deaths")
+
+gunsfull6b <- gunsfull %>%  
+  filter(sex == "M") %>% 
+  filter(age %in% c(15:35)) %>% 
+  filter(race == "Black") %>% 
+  group_by(month) %>% 
+  summarize(deaths = n()) %>%
+  mutate(var = 'test',
+        month = recode(month, '01' = 'January',
+                      '02' = 'February',
+                      '03' =  'March',
+                      '04' =  'April',
+                      '05' =  'May',
+                      '06' =  'June',
+                      '07' =  'July',
+                      '08' =  'August',
+                      '09' =  'September',
+                      '10' =  'October',
+                      '11' =  'November',
+                      '12' =  'December'))
+        
+
+gunsfull6b$month <- factor(gunsfull6b$month,levels = c("January", 'February', 'March', 'April', 'May', 'June', 'July', 'August',  'September', 'October', 'November', 'December'))
+
+
+ggplot(gunsfull6b, aes(x = month, y = deaths, group = var)) +
+    geom_line(size = 3, color = "red") +
+    theme_minimal() +
+    theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+    labs(title = "Monthly trends of death among younger Black men to homicide",
+         x = "Month",
+         y = "Deaths")
+
+```
+
+From the graphs above, we can learn that Spring and Summer months are more common for deaths- Spring more common for the older White suicide demographic and Summer for the other demographic. This may inform us better times to market anti-gun violence information.

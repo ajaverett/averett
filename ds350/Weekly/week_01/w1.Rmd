@@ -1,0 +1,186 @@
+---
+title: "Up and Running with R"
+author: "YOUR NAME"
+date: "`r format(Sys.time(), '%B %d, %Y')`"
+output:
+  html_document:  
+    keep_md: true
+    toc: true
+    toc_float: true
+    fig_height: 6
+    fig_width: 12
+    fig_align: 'center'
+---
+
+```{r, echo=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Reading Notes
+Remember that the two readings below can help answer questions and provided direction if/when you get stuck.
+
+* [Chapter 4: R for Data Scientists - Workflow Basics](http://r4ds.had.co.nz/workflow-basics.html)
+* [Modern Drive: Chapter 1 Getting Started with Data in R](https://moderndive.com/1-getting-started.html)
+
+As you read use this section to take notes of things you want to remember. Feel free to add code chunks, like the one below, where you can run code snippets that you find in the readings.
+
+```{r}
+# Insert code here.
+```
+
+You can try making your text **bold** or *italicized* to help organize your notes.
+
+You can also include bullet points:
+
+- Like this
+- And this
+
+If you'd like to learn more about formatting your text using Markdown, you can use [this reference](https://www.markdownguide.org/basic-syntax/).
+
+## R Practice
+
+### Question 1
+
+Create an object named `object1` and assign it the value of `10`. Create another object named `object2` and assign it the value of `"BYU-Idaho"`. Then try to add the two values together.
+
+```{r, error = TRUE}
+object1 <- 10
+object2 <- 'BYU-Idaho'
+object1 + object2
+```
+
+**What error message do you get?** Type your answer here.
+  Error in object1 + object2 : non-numeric argument to binary operator
+  
+**What is this error message trying to tell you?** Type your answer here.
+
+### Question 2
+
+Write a code that takes two numbers as input and returns their mean. (Do not use the built in `mean()` function.) Then adapt your code to assign the mean of 28 and 14 to an object called `result`. Display `result`.
+
+```{r}
+find.mean <- function(a,b){(a + b)/2}
+find.mean(11,45)
+```
+
+### Question 3
+
+Create a vector that contains the temperatures 85, 83, 83, 89, 92, 87, and 84. Then calculate (use built in functions):
+
+- The mean of the temperatures
+- The standard deviation of the temperatures
+
+```{r}
+temp <- c(85, 83, 83, 89, 92, 87, 84)
+mean(temp)
+sd(temp)
+```
+
+### Question 4
+
+Create a vector `v` with all integers 0-30, and a vector `w` with every third integer in the same range. (The documentation for `?seq` might be helpful.)
+
+Calculate the difference in lengths of the vectors `v` and `w`. 
+
+```{r}
+v <- seq(0:30)
+w <- seq(0,30, by = 3)
+
+length(v) - length(w)
+
+```
+
+### Question 5
+
+Create a new vector `v_square` with the square of elements at indices 3, 6, 7, 10, 15, 22, 23, 24, and 30 from the variable `v`. Display `v_square`.
+
+```{r}
+v_plain <- c(3,6,7,10,15,22,23,24,30)
+
+v_square <- v_plain^2
+
+v_square
+```
+
+### Question 6
+
+Create a boolean vector `v_bool` indicating which vector `v` elements are bigger than 20. Display `v_bool`. Then calculate how many values are over 20. (Hint: In R, note that TRUE = 1 and FALSE = 0, so you can use simple arithmetic to find this out.)
+
+```{r}
+v_bool <- v[v > 20]
+
+v_bool
+```
+
+### Question 7
+
+Display the output of `v[TRUE]`. 
+
+**Explain why you think R outputs this.** Type your answer here.
+
+```{r}
+v[TRUE]
+```
+
+### Question 8
+
+Use the variable `v_bool` as an index to extract the elements from `v` that are bigger than 20. Calculate the min and max values of this new vector.
+
+```{r}
+v_bool[v]
+```
+
+### Question 9
+
+What are the column names of the built-in dataframe `beaver1`? How many observations (rows) and variables (columns) are there?
+
+```{r}
+names(beaver1)
+length(names(beaver1))
+nrow(beaver1)
+```
+
+### Question 10
+
+Use square bracket notation to index the `beaver1` data set. Display the values in rows 21-23, columns 3-4.
+
+```{r}
+
+beaver1[(21:23),(3:4)]
+
+```
+
+### Question 11
+
+What is the min, mean, and max body temperature in the `beaver1` data set?
+
+```{r}
+
+min(beaver1$temp)
+mean(beaver1$temp)
+max(beaver1$temp)
+
+```
+
+### Question 12
+
+In the `beaver1` data set, the variable `temp` is recorded in degrees Celsius. Run the code below, which is trying to convert `temp` to Fahrenheit.
+
+**What error message do you get?** Type your answer here.
+
+**What is this error message trying to tell you?** Type your answer here.
+
+```{r, error = TRUE}
+# function to convert Celsius to Fahrenheit
+c_to_f <- function(c){
+  f = (c * 9/5) + 32
+  return(f)
+}
+
+# make a new vector of Fahrenheit temperatures!
+temp_in_f <- c_to_f(beaver1$temp)
+#test
+```
+
+## Topics to discuss with your team
+Make a list of topics you want to discuss in class with your team in this section. 

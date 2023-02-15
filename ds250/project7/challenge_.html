@@ -1,0 +1,578 @@
+<!DOCTYPE html><html><head>
+      <title>challenge_</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="file:///c:\Users\Aj\.vscode\extensions\shd101wyy.markdown-preview-enhanced-0.6.2\node_modules\@shd101wyy\mume\dependencies\katex\katex.min.css">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <style>
+      /**
+ * prism.js Github theme based on GitHub's theme.
+ * @author Sam Clarke
+ */
+code[class*="language-"],
+pre[class*="language-"] {
+  color: #333;
+  background: none;
+  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.4;
+
+  -moz-tab-size: 8;
+  -o-tab-size: 8;
+  tab-size: 8;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+  padding: .8em;
+  overflow: auto;
+  /* border: 1px solid #ddd; */
+  border-radius: 3px;
+  /* background: #fff; */
+  background: #f5f5f5;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+  padding: .1em;
+  border-radius: .3em;
+  white-space: normal;
+  background: #f5f5f5;
+}
+
+.token.comment,
+.token.blockquote {
+  color: #969896;
+}
+
+.token.cdata {
+  color: #183691;
+}
+
+.token.doctype,
+.token.punctuation,
+.token.variable,
+.token.macro.property {
+  color: #333;
+}
+
+.token.operator,
+.token.important,
+.token.keyword,
+.token.rule,
+.token.builtin {
+  color: #a71d5d;
+}
+
+.token.string,
+.token.url,
+.token.regex,
+.token.attr-value {
+  color: #183691;
+}
+
+.token.property,
+.token.number,
+.token.boolean,
+.token.entity,
+.token.atrule,
+.token.constant,
+.token.symbol,
+.token.command,
+.token.code {
+  color: #0086b3;
+}
+
+.token.tag,
+.token.selector,
+.token.prolog {
+  color: #63a35c;
+}
+
+.token.function,
+.token.namespace,
+.token.pseudo-element,
+.token.class,
+.token.class-name,
+.token.pseudo-class,
+.token.id,
+.token.url-reference .token.variable,
+.token.attr-name {
+  color: #795da3;
+}
+
+.token.entity {
+  cursor: help;
+}
+
+.token.title,
+.token.title .token.punctuation {
+  font-weight: bold;
+  color: #1d3e81;
+}
+
+.token.list {
+  color: #ed6a43;
+}
+
+.token.inserted {
+  background-color: #eaffea;
+  color: #55a532;
+}
+
+.token.deleted {
+  background-color: #ffecec;
+  color: #bd2c00;
+}
+
+.token.bold {
+  font-weight: bold;
+}
+
+.token.italic {
+  font-style: italic;
+}
+
+
+/* JSON */
+.language-json .token.property {
+  color: #183691;
+}
+
+.language-markup .token.tag .token.punctuation {
+  color: #333;
+}
+
+/* CSS */
+code.language-css,
+.language-css .token.function {
+  color: #0086b3;
+}
+
+/* YAML */
+.language-yaml .token.atrule {
+  color: #63a35c;
+}
+
+code.language-yaml {
+  color: #183691;
+}
+
+/* Ruby */
+.language-ruby .token.function {
+  color: #333;
+}
+
+/* Markdown */
+.language-markdown .token.url {
+  color: #795da3;
+}
+
+/* Makefile */
+.language-makefile .token.symbol {
+  color: #795da3;
+}
+
+.language-makefile .token.variable {
+  color: #183691;
+}
+
+.language-makefile .token.builtin {
+  color: #0086b3;
+}
+
+/* Bash */
+.language-bash .token.keyword {
+  color: #0086b3;
+}
+
+/* highlight */
+pre[data-line] {
+  position: relative;
+  padding: 1em 0 1em 3em;
+}
+pre[data-line] .line-highlight-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: transparent;
+  display: block;
+  width: 100%;
+}
+
+pre[data-line] .line-highlight {
+  position: absolute;
+  left: 0;
+  right: 0;
+  padding: inherit 0;
+  margin-top: 1em;
+  background: hsla(24, 20%, 50%,.08);
+  background: linear-gradient(to right, hsla(24, 20%, 50%,.1) 70%, hsla(24, 20%, 50%,0));
+  pointer-events: none;
+  line-height: inherit;
+  white-space: pre;
+}
+
+pre[data-line] .line-highlight:before, 
+pre[data-line] .line-highlight[data-end]:after {
+  content: attr(data-start);
+  position: absolute;
+  top: .4em;
+  left: .6em;
+  min-width: 1em;
+  padding: 0 .5em;
+  background-color: hsla(24, 20%, 50%,.4);
+  color: hsl(24, 20%, 95%);
+  font: bold 65%/1.5 sans-serif;
+  text-align: center;
+  vertical-align: .3em;
+  border-radius: 999px;
+  text-shadow: none;
+  box-shadow: 0 1px white;
+}
+
+pre[data-line] .line-highlight[data-end]:after {
+  content: attr(data-end);
+  top: auto;
+  bottom: .4em;
+}html body{font-family:"Helvetica Neue",Helvetica,"Segoe UI",Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ul,html body>ol{margin-bottom:16px}html body ul,html body ol{padding-left:2em}html body ul.no-list,html body ol.no-list{padding:0;list-style-type:none}html body ul ul,html body ul ol,html body ol ol,html body ol ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;background-color:#f0f0f0;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:bold;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:bold}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em !important;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::before,html body code::after{letter-spacing:-0.2em;content:"\00a0"}html body pre>code{padding:0;margin:0;font-size:.85em !important;word-break:normal;white-space:pre;background:transparent;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;font-size:.85em !important;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:before,html body pre tt:before,html body pre code:after,html body pre tt:after{content:normal}html body p,html body blockquote,html body ul,html body ol,html body dl,html body pre{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body pre,html body code{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview .pagebreak,.markdown-preview .newpage{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center !important}.markdown-preview:not([for="preview"]) .code-chunk .btn-group{display:none}.markdown-preview:not([for="preview"]) .code-chunk .status{display:none}.markdown-preview:not([for="preview"]) .code-chunk .output-div{margin-bottom:16px}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0}@media screen and (min-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{font-size:14px !important;padding:1em}}@media print{html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,0.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{padding:0 1.6em;margin-top:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc li{margin-bottom:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{list-style-type:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% -  300px);padding:2em calc(50% - 457px -  150px);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+
+      </style>
+    </head>
+    <body for="html-export">
+      <div class="mume markdown-preview  ">
+      <h3 class="mume-header" id="cse-250-coding-challenge">CSE 250 Coding Challenge</h3>
+
+<p>Aj Averett</p>
+<h3 class="mume-header" id="challenge-summary">Challenge Summary</h3>
+
+<p>This was an enjoyable set of challenges</p>
+<h4 class="mume-header" id="challenge-1">Challenge 1</h4>
+
+<p>For this challenge, I gathered the data for &apos;Peter&apos; based on Oregon and Utah. I then added extra elements as seen in the code below.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token builtin">all</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>peter_freq_chart_or <span class="token operator">+</span> peter_freq_chart_ut <span class="token operator">+</span> line_plot_1 <span class="token operator">+</span> line_plot_2 <span class="token operator">+</span> line_plot_3 <span class="token operator">+</span> text1 <span class="token operator">+</span> text2 <span class="token operator">+</span> text3<span class="token punctuation">)</span>
+<span class="token punctuation">.</span>properties<span class="token punctuation">(</span>
+    title<span class="token operator">=</span> <span class="token punctuation">{</span>
+      <span class="token string">&quot;text&quot;</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">&quot;The History of Peter for UT (red) and OR (orange) &quot;</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+     <span class="token comment">#&quot;subtitle&quot;: [&apos;Super cool subtitle&apos;]</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    width <span class="token operator">=</span> <span class="token number">500</span><span class="token punctuation">)</span>
+<span class="token punctuation">.</span>configure_title<span class="token punctuation">(</span>anchor<span class="token operator">=</span><span class="token string">&apos;start&apos;</span>
+<span class="token punctuation">)</span><span class="token punctuation">)</span>
+</pre><h5 class="mume-header" id="answer">Answer</h5>
+
+<p><img src="data:image/svg+xml;charset=utf-8;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2ZXJzaW9uPSIxLjEiIGNsYXNzPSJtYXJrcyIgd2lkdGg9IjU0MyIgaGVpZ2h0PSIzNjQiIHZpZXdCb3g9IjAgMCA1NDMgMzY0Ij48cmVjdCB3aWR0aD0iNTQzIiBoZWlnaHQ9IjM2NCIgZmlsbD0id2hpdGUiLz48ZyBmaWxsPSJub25lIiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDM3LDI3KSI+PGcgY2xhc3M9Im1hcmstZ3JvdXAgcm9sZS1mcmFtZSByb290IiByb2xlPSJncmFwaGljcy1vYmplY3QiIGFyaWEtcm9sZWRlc2NyaXB0aW9uPSJncm91cCBtYXJrIGNvbnRhaW5lciI+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMCwwKSI+PHBhdGggY2xhc3M9ImJhY2tncm91bmQiIGFyaWEtaGlkZGVuPSJ0cnVlIiBkPSJNMC41LDAuNWg1MDB2MzAwaC01MDBaIiBzdHJva2U9IiNkZGQiLz48Zz48ZyBjbGFzcz0ibWFyay1ncm91cCByb2xlLWF4aXMiIGFyaWEtaGlkZGVuPSJ0cnVlIj48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgwLjUsMzAwLjUpIj48cGF0aCBjbGFzcz0iYmFja2dyb3VuZCIgYXJpYS1oaWRkZW49InRydWUiIGQ9Ik0wLDBoMHYwaDBaIiBwb2ludGVyLWV2ZW50cz0ibm9uZSIvPjxnPjxnIGNsYXNzPSJtYXJrLXJ1bGUgcm9sZS1heGlzLWdyaWQiIHBvaW50ZXItZXZlbnRzPSJub25lIj48bGluZSB0cmFuc2Zvcm09InRyYW5zbGF0ZSgwLC0zMDApIiB4Mj0iMCIgeTI9IjMwMCIgc3Ryb2tlPSIjZGRkIiBzdHJva2Utd2lkdGg9IjEiIG9wYWNpdHk9IjEiLz48bGluZSB0cmFuc2Zvcm09InRyYW5zbGF0ZSg0NSwtMzAwKSIgeDI9IjAiIHkyPSIzMDAiIHN0cm9rZT0iI2RkZCIgc3Ryb2tlLXdpZHRoPSIxIiBvcGFjaXR5PSIxIi8+PGxpbmUgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoOTEsLTMwMCkiIHgyPSIwIiB5Mj0iMzAwIiBzdHJva2U9IiNkZGQiIHN0cm9rZS13aWR0aD0iMSIgb3BhY2l0eT0iMSIvPjxsaW5lIHRyYW5zZm9ybT0idHJhbnNsYXRlKDEzNiwtMzAwKSIgeDI9IjAiIHkyPSIzMDAiIHN0cm9rZT0iI2RkZCIgc3Ryb2tlLXdpZHRoPSIxIiBvcGFjaXR5PSIxIi8+PGxpbmUgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMTgyLC0zMDApIiB4Mj0iMCIgeTI9IjMwMCIgc3Ryb2tlPSIjZGRkIiBzdHJva2Utd2lkdGg9IjEiIG9wYWNpdHk9IjEiLz48bGluZSB0cmFuc2Zvcm09InRyYW5zbGF0ZSgyMjcsLTMwMCkiIHgyPSIwIiB5Mj0iMzAwIiBzdHJva2U9IiNkZGQiIHN0cm9rZS13aWR0aD0iMSIgb3BhY2l0eT0iMSIvPjxsaW5lIHRyYW5zZm9ybT0idHJhbnNsYXRlKDI3MywtMzAwKSIgeDI9IjAiIHkyPSIzMDAiIHN0cm9rZT0iI2RkZCIgc3Ryb2tlLXdpZHRoPSIxIiBvcGFjaXR5PSIxIi8+PGxpbmUgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMzE4LC0zMDApIiB4Mj0iMCIgeTI9IjMwMCIgc3Ryb2tlPSIjZGRkIiBzdHJva2Utd2lkdGg9IjEiIG9wYWNpdHk9IjEiLz48bGluZSB0cmFuc2Zvcm09InRyYW5zbGF0ZSgzNjQsLTMwMCkiIHgyPSIwIiB5Mj0iMzAwIiBzdHJva2U9IiNkZGQiIHN0cm9rZS13aWR0aD0iMSIgb3BhY2l0eT0iMSIvPjxsaW5lIHRyYW5zZm9ybT0idHJhbnNsYXRlKDQwOSwtMzAwKSIgeDI9IjAiIHkyPSIzMDAiIHN0cm9rZT0iI2RkZCIgc3Ryb2tlLXdpZHRoPSIxIiBvcGFjaXR5PSIxIi8+PGxpbmUgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoNDU1LC0zMDApIiB4Mj0iMCIgeTI9IjMwMCIgc3Ryb2tlPSIjZGRkIiBzdHJva2Utd2lkdGg9IjEiIG9wYWNpdHk9IjEiLz48bGluZSB0cmFuc2Zvcm09InRyYW5zbGF0ZSg1MDAsLTMwMCkiIHgyPSIwIiB5Mj0iMzAwIiBzdHJva2U9IiNkZGQiIHN0cm9rZS13aWR0aD0iMSIgb3BhY2l0eT0iMSIvPjwvZz48L2c+PHBhdGggY2xhc3M9ImZvcmVncm91bmQiIGFyaWEtaGlkZGVuPSJ0cnVlIiBkPSIiIHBvaW50ZXItZXZlbnRzPSJub25lIiBkaXNwbGF5PSJub25lIi8+PC9nPjwvZz48ZyBjbGFzcz0ibWFyay1ncm91cCByb2xlLWF4aXMiIGFyaWEtaGlkZGVuPSJ0cnVlIj48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgwLjUsMC41KSI+PHBhdGggY2xhc3M9ImJhY2tncm91bmQiIGFyaWEtaGlkZGVuPSJ0cnVlIiBkPSJNMCwwaDB2MGgwWiIgcG9pbnRlci1ldmVudHM9Im5vbmUiLz48Zz48ZyBjbGFzcz0ibWFyay1ydWxlIHJvbGUtYXhpcy1ncmlkIiBwb2ludGVyLWV2ZW50cz0ibm9uZSI+PGxpbmUgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMCwzMDApIiB4Mj0iNTAwIiB5Mj0iMCIgc3Ryb2tlPSIjZGRkIiBzdHJva2Utd2lkdGg9IjEiIG9wYWNpdHk9IjEiLz48bGluZSB0cmFuc2Zvcm09InRyYW5zbGF0ZSgwLDI2NykiIHgyPSI1MDAiIHkyPSIwIiBzdHJva2U9IiNkZGQiIHN0cm9rZS13aWR0aD0iMSIgb3BhY2l0eT0iMSIvPjxsaW5lIHRyYW5zZm9ybT0idHJhbnNsYXRlKDAsMjMzKSIgeDI9IjUwMCIgeTI9IjAiIHN0cm9rZT0iI2RkZCIgc3Ryb2tlLXdpZHRoPSIxIiBvcGFjaXR5PSIxIi8+PGxpbmUgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMCwyMDApIiB4Mj0iNTAwIiB5Mj0iMCIgc3Ryb2tlPSIjZGRkIiBzdHJva2Utd2lkdGg9IjEiIG9wYWNpdHk9IjEiLz48bGluZSB0cmFuc2Zvcm09InRyYW5zbGF0ZSgwLDE2NykiIHgyPSI1MDAiIHkyPSIwIiBzdHJva2U9IiNkZGQiIHN0cm9rZS13aWR0aD0iMSIgb3BhY2l0eT0iMSIvPjxsaW5lIHRyYW5zZm9ybT0idHJhbnNsYXRlKDAsMTMzKSIgeDI9IjUwMCIgeTI9IjAiIHN0cm9rZT0iI2RkZCIgc3Ryb2tlLXdpZHRoPSIxIiBvcGFjaXR5PSIxIi8+PGxpbmUgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMCwxMDApIiB4Mj0iNTAwIiB5Mj0iMCIgc3Ryb2tlPSIjZGRkIiBzdHJva2Utd2lkdGg9IjEiIG9wYWNpdHk9IjEiLz48bGluZSB0cmFuc2Zvcm09InRyYW5zbGF0ZSgwLDY3KSIgeDI9IjUwMCIgeTI9IjAiIHN0cm9rZT0iI2RkZCIgc3Ryb2tlLXdpZHRoPSIxIiBvcGFjaXR5PSIxIi8+PGxpbmUgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMCwzMykiIHgyPSI1MDAiIHkyPSIwIiBzdHJva2U9IiNkZGQiIHN0cm9rZS13aWR0aD0iMSIgb3BhY2l0eT0iMSIvPjxsaW5lIHRyYW5zZm9ybT0idHJhbnNsYXRlKDAsMCkiIHgyPSI1MDAiIHkyPSIwIiBzdHJva2U9IiNkZGQiIHN0cm9rZS13aWR0aD0iMSIgb3BhY2l0eT0iMSIvPjwvZz48L2c+PHBhdGggY2xhc3M9ImZvcmVncm91bmQiIGFyaWEtaGlkZGVuPSJ0cnVlIiBkPSIiIHBvaW50ZXItZXZlbnRzPSJub25lIiBkaXNwbGF5PSJub25lIi8+PC9nPjwvZz48ZyBjbGFzcz0ibWFyay1ncm91cCByb2xlLWF4aXMiIHJvbGU9ImdyYXBoaWNzLXN5bWJvbCIgYXJpYS1yb2xlZGVzY3JpcHRpb249ImF4aXMiIGFyaWEtbGFiZWw9IlgtYXhpcyB0aXRsZWQgJ1llYXIgbmFtZSBnaXZlbicgZm9yIGEgbGluZWFyIHNjYWxlIHdpdGggdmFsdWVzIGZyb20gMTkxMCB0byAyMDIwIj48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgwLjUsMzAwLjUpIj48cGF0aCBjbGFzcz0iYmFja2dyb3VuZCIgYXJpYS1oaWRkZW49InRydWUiIGQ9Ik0wLDBoMHYwaDBaIiBwb2ludGVyLWV2ZW50cz0ibm9uZSIvPjxnPjxnIGNsYXNzPSJtYXJrLXJ1bGUgcm9sZS1heGlzLXRpY2siIHBvaW50ZXItZXZlbnRzPSJub25lIj48bGluZSB0cmFuc2Zvcm09InRyYW5zbGF0ZSgwLDApIiB4Mj0iMCIgeTI9IjUiIHN0cm9rZT0iIzg4OCIgc3Ryb2tlLXdpZHRoPSIxIiBvcGFjaXR5PSIxIi8+PGxpbmUgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoNDUsMCkiIHgyPSIwIiB5Mj0iNSIgc3Ryb2tlPSIjODg4IiBzdHJva2Utd2lkdGg9IjEiIG9wYWNpdHk9IjEiLz48bGluZSB0cmFuc2Zvcm09InRyYW5zbGF0ZSg5MSwwKSIgeDI9IjAiIHkyPSI1IiBzdHJva2U9IiM4ODgiIHN0cm9rZS13aWR0aD0iMSIgb3BhY2l0eT0iMSIvPjxsaW5lIHRyYW5zZm9ybT0idHJhbnNsYXRlKDEzNiwwKSIgeDI9IjAiIHkyPSI1IiBzdHJva2U9IiM4ODgiIHN0cm9rZS13aWR0aD0iMSIgb3BhY2l0eT0iMSIvPjxsaW5lIHRyYW5zZm9ybT0idHJhbnNsYXRlKDE4MiwwKSIgeDI9IjAiIHkyPSI1IiBzdHJva2U9IiM4ODgiIHN0cm9rZS13aWR0aD0iMSIgb3BhY2l0eT0iMSIvPjxsaW5lIHRyYW5zZm9ybT0idHJhbnNsYXRlKDIyNywwKSIgeDI9IjAiIHkyPSI1IiBzdHJva2U9IiM4ODgiIHN0cm9rZS13aWR0aD0iMSIgb3BhY2l0eT0iMSIvPjxsaW5lIHRyYW5zZm9ybT0idHJhbnNsYXRlKDI3MywwKSIgeDI9IjAiIHkyPSI1IiBzdHJva2U9IiM4ODgiIHN0cm9rZS13aWR0aD0iMSIgb3BhY2l0eT0iMSIvPjxsaW5lIHRyYW5zZm9ybT0idHJhbnNsYXRlKDMxOCwwKSIgeDI9IjAiIHkyPSI1IiBzdHJva2U9IiM4ODgiIHN0cm9rZS13aWR0aD0iMSIgb3BhY2l0eT0iMSIvPjxsaW5lIHRyYW5zZm9ybT0idHJhbnNsYXRlKDM2NCwwKSIgeDI9IjAiIHkyPSI1IiBzdHJva2U9IiM4ODgiIHN0cm9rZS13aWR0aD0iMSIgb3BhY2l0eT0iMSIvPjxsaW5lIHRyYW5zZm9ybT0idHJhbnNsYXRlKDQwOSwwKSIgeDI9IjAiIHkyPSI1IiBzdHJva2U9IiM4ODgiIHN0cm9rZS13aWR0aD0iMSIgb3BhY2l0eT0iMSIvPjxsaW5lIHRyYW5zZm9ybT0idHJhbnNsYXRlKDQ1NSwwKSIgeDI9IjAiIHkyPSI1IiBzdHJva2U9IiM4ODgiIHN0cm9rZS13aWR0aD0iMSIgb3BhY2l0eT0iMSIvPjxsaW5lIHRyYW5zZm9ybT0idHJhbnNsYXRlKDUwMCwwKSIgeDI9IjAiIHkyPSI1IiBzdHJva2U9IiM4ODgiIHN0cm9rZS13aWR0aD0iMSIgb3BhY2l0eT0iMSIvPjwvZz48ZyBjbGFzcz0ibWFyay10ZXh0IHJvbGUtYXhpcy1sYWJlbCIgcG9pbnRlci1ldmVudHM9Im5vbmUiPjx0ZXh0IHRleHQtYW5jaG9yPSJzdGFydCIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMCwxNSkiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjEwcHgiIGZpbGw9IiMwMDAiIG9wYWNpdHk9IjEiPjE5MTA8L3RleHQ+PHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoNDUuNDU0NTQ1NDU0NTQ1NDUsMTUpIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMHB4IiBmaWxsPSIjMDAwIiBvcGFjaXR5PSIxIj4xOTIwPC90ZXh0Pjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDkwLjkwOTA5MDkwOTA5MDksMTUpIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMHB4IiBmaWxsPSIjMDAwIiBvcGFjaXR5PSIxIj4xOTMwPC90ZXh0Pjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDEzNi4zNjM2MzYzNjM2MzYzNSwxNSkiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjEwcHgiIGZpbGw9IiMwMDAiIG9wYWNpdHk9IjEiPjE5NDA8L3RleHQ+PHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMTgxLjgxODE4MTgxODE4MTgsMTUpIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMHB4IiBmaWxsPSIjMDAwIiBvcGFjaXR5PSIxIj4xOTUwPC90ZXh0Pjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDIyNy4yNzI3MjcyNzI3MjcyNSwxNSkiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjEwcHgiIGZpbGw9IiMwMDAiIG9wYWNpdHk9IjEiPjE5NjA8L3RleHQ+PHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMjcyLjcyNzI3MjcyNzI3MjcsMTUpIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMHB4IiBmaWxsPSIjMDAwIiBvcGFjaXR5PSIxIj4xOTcwPC90ZXh0Pjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDMxOC4xODE4MTgxODE4MTgyLDE1KSIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTBweCIgZmlsbD0iIzAwMCIgb3BhY2l0eT0iMSI+MTk4MDwvdGV4dD48dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgzNjMuNjM2MzYzNjM2MzYzNiwxNSkiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjEwcHgiIGZpbGw9IiMwMDAiIG9wYWNpdHk9IjEiPjE5OTA8L3RleHQ+PHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoNDA5LjA5MDkwOTA5MDkwOTEsMTUpIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMHB4IiBmaWxsPSIjMDAwIiBvcGFjaXR5PSIxIj4yMDAwPC90ZXh0Pjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDQ1NC41NDU0NTQ1NDU0NTQ1LDE1KSIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTBweCIgZmlsbD0iIzAwMCIgb3BhY2l0eT0iMSI+MjAxMDwvdGV4dD48dGV4dCB0ZXh0LWFuY2hvcj0iZW5kIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSg1MDAsMTUpIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMHB4IiBmaWxsPSIjMDAwIiBvcGFjaXR5PSIxIj4yMDIwPC90ZXh0PjwvZz48ZyBjbGFzcz0ibWFyay1ydWxlIHJvbGUtYXhpcy1kb21haW4iIHBvaW50ZXItZXZlbnRzPSJub25lIj48bGluZSB0cmFuc2Zvcm09InRyYW5zbGF0ZSgwLDApIiB4Mj0iNTAwIiB5Mj0iMCIgc3Ryb2tlPSIjODg4IiBzdHJva2Utd2lkdGg9IjEiIG9wYWNpdHk9IjEiLz48L2c+PGcgY2xhc3M9Im1hcmstdGV4dCByb2xlLWF4aXMtdGl0bGUiIHBvaW50ZXItZXZlbnRzPSJub25lIj48dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgyNTAsMzApIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMXB4IiBmb250LXdlaWdodD0iYm9sZCIgZmlsbD0iIzAwMCIgb3BhY2l0eT0iMSI+WWVhciBuYW1lIGdpdmVuPC90ZXh0PjwvZz48L2c+PHBhdGggY2xhc3M9ImZvcmVncm91bmQiIGFyaWEtaGlkZGVuPSJ0cnVlIiBkPSIiIHBvaW50ZXItZXZlbnRzPSJub25lIiBkaXNwbGF5PSJub25lIi8+PC9nPjwvZz48ZyBjbGFzcz0ibWFyay1ncm91cCByb2xlLWF4aXMiIHJvbGU9ImdyYXBoaWNzLXN5bWJvbCIgYXJpYS1yb2xlZGVzY3JpcHRpb249ImF4aXMiIGFyaWEtbGFiZWw9IlktYXhpcyB0aXRsZWQgJ0NvdW50IG9mIFBldGVyJyBmb3IgYSBsaW5lYXIgc2NhbGUgd2l0aCB2YWx1ZXMgZnJvbSAwIHRvIDkwIj48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgwLjUsMC41KSI+PHBhdGggY2xhc3M9ImJhY2tncm91bmQiIGFyaWEtaGlkZGVuPSJ0cnVlIiBkPSJNMCwwaDB2MGgwWiIgcG9pbnRlci1ldmVudHM9Im5vbmUiLz48Zz48ZyBjbGFzcz0ibWFyay1ydWxlIHJvbGUtYXhpcy10aWNrIiBwb2ludGVyLWV2ZW50cz0ibm9uZSI+PGxpbmUgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMCwzMDApIiB4Mj0iLTUiIHkyPSIwIiBzdHJva2U9IiM4ODgiIHN0cm9rZS13aWR0aD0iMSIgb3BhY2l0eT0iMSIvPjxsaW5lIHRyYW5zZm9ybT0idHJhbnNsYXRlKDAsMjY3KSIgeDI9Ii01IiB5Mj0iMCIgc3Ryb2tlPSIjODg4IiBzdHJva2Utd2lkdGg9IjEiIG9wYWNpdHk9IjEiLz48bGluZSB0cmFuc2Zvcm09InRyYW5zbGF0ZSgwLDIzMykiIHgyPSItNSIgeTI9IjAiIHN0cm9rZT0iIzg4OCIgc3Ryb2tlLXdpZHRoPSIxIiBvcGFjaXR5PSIxIi8+PGxpbmUgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMCwyMDApIiB4Mj0iLTUiIHkyPSIwIiBzdHJva2U9IiM4ODgiIHN0cm9rZS13aWR0aD0iMSIgb3BhY2l0eT0iMSIvPjxsaW5lIHRyYW5zZm9ybT0idHJhbnNsYXRlKDAsMTY3KSIgeDI9Ii01IiB5Mj0iMCIgc3Ryb2tlPSIjODg4IiBzdHJva2Utd2lkdGg9IjEiIG9wYWNpdHk9IjEiLz48bGluZSB0cmFuc2Zvcm09InRyYW5zbGF0ZSgwLDEzMykiIHgyPSItNSIgeTI9IjAiIHN0cm9rZT0iIzg4OCIgc3Ryb2tlLXdpZHRoPSIxIiBvcGFjaXR5PSIxIi8+PGxpbmUgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMCwxMDApIiB4Mj0iLTUiIHkyPSIwIiBzdHJva2U9IiM4ODgiIHN0cm9rZS13aWR0aD0iMSIgb3BhY2l0eT0iMSIvPjxsaW5lIHRyYW5zZm9ybT0idHJhbnNsYXRlKDAsNjcpIiB4Mj0iLTUiIHkyPSIwIiBzdHJva2U9IiM4ODgiIHN0cm9rZS13aWR0aD0iMSIgb3BhY2l0eT0iMSIvPjxsaW5lIHRyYW5zZm9ybT0idHJhbnNsYXRlKDAsMzMpIiB4Mj0iLTUiIHkyPSIwIiBzdHJva2U9IiM4ODgiIHN0cm9rZS13aWR0aD0iMSIgb3BhY2l0eT0iMSIvPjxsaW5lIHRyYW5zZm9ybT0idHJhbnNsYXRlKDAsMCkiIHgyPSItNSIgeTI9IjAiIHN0cm9rZT0iIzg4OCIgc3Ryb2tlLXdpZHRoPSIxIiBvcGFjaXR5PSIxIi8+PC9nPjxnIGNsYXNzPSJtYXJrLXRleHQgcm9sZS1heGlzLWxhYmVsIiBwb2ludGVyLWV2ZW50cz0ibm9uZSI+PHRleHQgdGV4dC1hbmNob3I9ImVuZCIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTcsMzAzKSIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTBweCIgZmlsbD0iIzAwMCIgb3BhY2l0eT0iMSI+MDwvdGV4dD48dGV4dCB0ZXh0LWFuY2hvcj0iZW5kIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtNywyNjkuNjY2NjY2NjY2NjY2NjMpIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMHB4IiBmaWxsPSIjMDAwIiBvcGFjaXR5PSIxIj4xMDwvdGV4dD48dGV4dCB0ZXh0LWFuY2hvcj0iZW5kIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtNywyMzYuMzMzMzMzMzMzMzMzMzQpIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMHB4IiBmaWxsPSIjMDAwIiBvcGFjaXR5PSIxIj4yMDwvdGV4dD48dGV4dCB0ZXh0LWFuY2hvcj0iZW5kIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtNywyMDMuMDAwMDAwMDAwMDAwMDMpIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMHB4IiBmaWxsPSIjMDAwIiBvcGFjaXR5PSIxIj4zMDwvdGV4dD48dGV4dCB0ZXh0LWFuY2hvcj0iZW5kIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtNywxNjkuNjY2NjY2NjY2NjY2NjkpIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMHB4IiBmaWxsPSIjMDAwIiBvcGFjaXR5PSIxIj40MDwvdGV4dD48dGV4dCB0ZXh0LWFuY2hvcj0iZW5kIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtNywxMzYuMzMzMzMzMzMzMzMzMzEpIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMHB4IiBmaWxsPSIjMDAwIiBvcGFjaXR5PSIxIj41MDwvdGV4dD48dGV4dCB0ZXh0LWFuY2hvcj0iZW5kIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtNywxMDMuMDAwMDAwMDAwMDAwMDEpIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMHB4IiBmaWxsPSIjMDAwIiBvcGFjaXR5PSIxIj42MDwvdGV4dD48dGV4dCB0ZXh0LWFuY2hvcj0iZW5kIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtNyw2OS42NjY2NjY2NjY2NjY2NikiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjEwcHgiIGZpbGw9IiMwMDAiIG9wYWNpdHk9IjEiPjcwPC90ZXh0Pjx0ZXh0IHRleHQtYW5jaG9yPSJlbmQiIHRyYW5zZm9ybT0idHJhbnNsYXRlKC03LDM2LjMzMzMzMzMzMzMzMzM1KSIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTBweCIgZmlsbD0iIzAwMCIgb3BhY2l0eT0iMSI+ODA8L3RleHQ+PHRleHQgdGV4dC1hbmNob3I9ImVuZCIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTcsMykiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjEwcHgiIGZpbGw9IiMwMDAiIG9wYWNpdHk9IjEiPjkwPC90ZXh0PjwvZz48ZyBjbGFzcz0ibWFyay1ydWxlIHJvbGUtYXhpcy1kb21haW4iIHBvaW50ZXItZXZlbnRzPSJub25lIj48bGluZSB0cmFuc2Zvcm09InRyYW5zbGF0ZSgwLDMwMCkiIHgyPSIwIiB5Mj0iLTMwMCIgc3Ryb2tlPSIjODg4IiBzdHJva2Utd2lkdGg9IjEiIG9wYWNpdHk9IjEiLz48L2c+PGcgY2xhc3M9Im1hcmstdGV4dCByb2xlLWF4aXMtdGl0bGUiIHBvaW50ZXItZXZlbnRzPSJub25lIj48dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtMjEsMTUwKSByb3RhdGUoLTkwKSB0cmFuc2xhdGUoMCwtMikiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjExcHgiIGZvbnQtd2VpZ2h0PSJib2xkIiBmaWxsPSIjMDAwIiBvcGFjaXR5PSIxIj5Db3VudCBvZiBQZXRlcjwvdGV4dD48L2c+PC9nPjxwYXRoIGNsYXNzPSJmb3JlZ3JvdW5kIiBhcmlhLWhpZGRlbj0idHJ1ZSIgZD0iIiBwb2ludGVyLWV2ZW50cz0ibm9uZSIgZGlzcGxheT0ibm9uZSIvPjwvZz48L2c+PGcgY2xhc3M9Im1hcmstbGluZSByb2xlLW1hcmsgbGF5ZXJfMF9tYXJrcyIgcm9sZT0iZ3JhcGhpY3Mtb2JqZWN0IiBhcmlhLXJvbGVkZXNjcmlwdGlvbj0ibGluZSBtYXJrIGNvbnRhaW5lciI+PHBhdGggYXJpYS1sYWJlbD0iWWVhciBuYW1lIGdpdmVuOiAxOTEzOyBDb3VudCBvZiBQZXRlcjogNyIgcm9sZT0iZ3JhcGhpY3Mtc3ltYm9sIiBhcmlhLXJvbGVkZXNjcmlwdGlvbj0ibGluZSBtYXJrIiBkPSJNMTMuNjM2MzYzNjM2MzYzNjM1LDI3Ni42NjY2NjY2NjY2NjY3TDE4LjE4MTgxODE4MTgxODE4LDI2Ni42NjY2NjY2NjY2NjY2M0wyMi43MjcyNzI3MjcyNzI3MjcsMjU2LjY2NjY2NjY2NjY2NjdMMjcuMjcyNzI3MjcyNzI3MjcsMjczLjMzMzMzMzMzMzMzMzNMMzEuODE4MTgxODE4MTgxODE3LDI1Ni42NjY2NjY2NjY2NjY3TDM2LjM2MzYzNjM2MzYzNjM2LDI4MEw0MC45MDkwOTA5MDkwOTA5MSwyNTYuNjY2NjY2NjY2NjY2N0w0NS40NTQ1NDU0NTQ1NDU0NSwyODBMNTAsMjUzLjMzMzMzMzMzMzMzMzM0TDU0LjU0NTQ1NDU0NTQ1NDU0LDI2Ni42NjY2NjY2NjY2NjY2M0w1OS4wOTA5MDkwOTA5MDkwODYsMjc2LjY2NjY2NjY2NjY2NjdMNjMuNjM2MzYzNjM2MzYzNjMsMjUzLjMzMzMzMzMzMzMzMzM0TDY4LjE4MTgxODE4MTgxODE3LDI0My4zMzMzMzMzMzMzMzMzNEw3Mi43MjcyNzI3MjcyNzI3MiwyNzMuMzMzMzMzMzMzMzMzM0w3Ny4yNzI3MjcyNzI3MjcyNywyNDMuMzMzMzMzMzMzMzMzMzRMODEuODE4MTgxODE4MTgxODEsMjQ2LjY2NjY2NjY2NjY2NjY2TDg2LjM2MzYzNjM2MzYzNjM2LDI1MEw5MC45MDkwOTA5MDkwOTA5LDI2My4zMzMzMzMzMzMzMzMzTDk1LjQ1NDU0NTQ1NDU0NTQ1LDI2My4zMzMzMzMzMzMzMzMzTDEwMCwyNDBMMTA0LjU0NTQ1NDU0NTQ1NDUzLDI0My4zMzMzMzMzMzMzMzMzNEwxMDkuMDkwOTA5MDkwOTA5MDgsMjQzLjMzMzMzMzMzMzMzMzM0TDExMy42MzYzNjM2MzYzNjM2MywyMzMuMzMzMzMzMzMzMzMzMzRMMTE4LjE4MTgxODE4MTgxODE3LDI0MEwxMjIuNzI3MjcyNzI3MjcyNzIsMjEzLjMzMzMzMzMzMzMzMzM0TDEyNy4yNzI3MjcyNzI3MjcyNywyMjAuMDAwMDAwMDAwMDAwMDNMMTMxLjgxODE4MTgxODE4MTgsMjI2LjY2NjY2NjY2NjY2NjY2TDEzNi4zNjM2MzYzNjM2MzYzNSwyMTYuNjY2NjY2NjY2NjY2NjZMMTQwLjkwOTA5MDkwOTA5MDksMTk2LjY2NjY2NjY2NjY2NjY2TDE0NS40NTQ1NDU0NTQ1NDU0NCwxODMuMzMzMzMzMzMzMzMzMzRMMTUwLDIwMy4zMzMzMzMzMzMzMzMzNEwxNTQuNTQ1NDU0NTQ1NDU0NTMsMjA2LjY2NjY2NjY2NjY2NjY2TDE1OS4wOTA5MDkwOTA5MDkxLDE4MEwxNjMuNjM2MzYzNjM2MzYzNjMsMTQ2LjY2NjY2NjY2NjY2NjY5TDE2OC4xODE4MTgxODE4MTgyLDExMy4zMzMzMzMzMzMzMzMzM0wxNzIuNzI3MjcyNzI3MjcyNzIsMTU2LjY2NjY2NjY2NjY2NjYzTDE3Ny4yNzI3MjcyNzI3MjcyOCwxNzMuMzMzMzMzMzMzMzMzMzFMMTgxLjgxODE4MTgxODE4MTgsODYuNjY2NjY2NjY2NjY2NjZMMTg2LjM2MzYzNjM2MzYzNjM3LDE4Ni42NjY2NjY2NjY2NjY2NkwxOTAuOTA5MDkwOTA5MDkwOSwxNDYuNjY2NjY2NjY2NjY2NjlMMTk1LjQ1NDU0NTQ1NDU0NTQ3LDgwLjAwMDAwMDAwMDAwMDAxTDIwMCw2OS45OTk5OTk5OTk5OTk5OUwyMDQuNTQ1NDU0NTQ1NDU0NTYsOTAuMDAwMDAwMDAwMDAwMDFMMjA5LjA5MDkwOTA5MDkwOTA3LDE2LjY2NjY2NjY2NjY2NjY3NUwyMTMuNjM2MzYzNjM2MzYzNjMsOTYuNjY2NjY2NjY2NjY2NjZMMjE4LjE4MTgxODE4MTgxODE2LDExMC4wMDAwMDAwMDAwMDAwMUwyMjIuNzI3MjcyNzI3MjcyNzIsOTMuMzMzMzMzMzMzMzMzMzNMMjI3LjI3MjcyNzI3MjcyNzI1LDExNi42NjY2NjY2NjY2NjY2NkwyMzEuODE4MTgxODE4MTgxOCwxMjBMMjM2LjM2MzYzNjM2MzYzNjM1LDExMy4zMzMzMzMzMzMzMzMzM0wyNDAuOTA5MDkwOTA5MDkwOSwxMjBMMjQ1LjQ1NDU0NTQ1NDU0NTQ0LDkwLjAwMDAwMDAwMDAwMDAxTDI1MCw4MC4wMDAwMDAwMDAwMDAwMUwyNTQuNTQ1NDU0NTQ1NDU0NTMsODAuMDAwMDAwMDAwMDAwMDFMMjU5LjA5MDkwOTA5MDkwOTEsOTAuMDAwMDAwMDAwMDAwMDFMMjYzLjYzNjM2MzYzNjM2MzYsNDYuNjY2NjY2NjY2NjY2NjY0TDI2OC4xODE4MTgxODE4MTgyLDkzLjMzMzMzMzMzMzMzMzMzTDI3Mi43MjcyNzI3MjcyNzI3LDY2LjY2NjY2NjY2NjY2NjY2TDI3Ny4yNzI3MjcyNzI3MjczLDEyMy4zMzMzMzMzMzMzMzMzM0wyODEuODE4MTgxODE4MTgxOCw5MC4wMDAwMDAwMDAwMDAwMUwyODYuMzYzNjM2MzYzNjM2NCw2OS45OTk5OTk5OTk5OTk5OUwyOTAuOTA5MDkwOTA5MDkwOSw1Ni42NjY2NjY2NjY2NjY2NjRMMjk1LjQ1NDU0NTQ1NDU0NTUsMTAwLjAwMDAwMDAwMDAwMDAxTDMwMCwyOS45OTk5OTk5OTk5OTk5OTNMMzA0LjU0NTQ1NDU0NTQ1NDU2LDU2LjY2NjY2NjY2NjY2NjY2NEwzMDkuMDkwOTA5MDkwOTA5MDcsMzkuOTk5OTk5OTk5OTk5OTlMMzEzLjYzNjM2MzYzNjM2MzcsMTYuNjY2NjY2NjY2NjY2Njc1TDMxOC4xODE4MTgxODE4MTgyLDE2LjY2NjY2NjY2NjY2NjY3NUwzMjIuNzI3MjcyNzI3MjcyNzUsNDMuMzMzMzMzMzMzMzMzMzRMMzI3LjI3MjcyNzI3MjcyNzI1LDI5Ljk5OTk5OTk5OTk5OTk5M0wzMzEuODE4MTgxODE4MTgxODcsNzMuMzMzMzMzMzMzMzMzMzRMMzM2LjM2MzYzNjM2MzYzNjQsNDkuOTk5OTk5OTk5OTk5OTg2TDM0MC45MDkwOTA5MDkwOTA5LDczLjMzMzMzMzMzMzMzMzM0TDM0NS40NTQ1NDU0NTQ1NDU0NCw4MC4wMDAwMDAwMDAwMDAwMUwzNTAsOTYuNjY2NjY2NjY2NjY2NjZMMzU0LjU0NTQ1NDU0NTQ1NDU2LDEwMy4zMzMzMzMzMzMzMzMzM0wzNTkuMDkwOTA5MDkwOTA5MDcsNjYuNjY2NjY2NjY2NjY2NjZMMzYzLjYzNjM2MzYzNjM2MzYsMTA2LjY2NjY2NjY2NjY2NjY2TDM2OC4xODE4MTgxODE4MTgyLDk2LjY2NjY2NjY2NjY2NjY2TDM3Mi43MjcyNzI3MjcyNzI3NSw2Ni42NjY2NjY2NjY2NjY2NkwzNzcuMjcyNzI3MjcyNzI3MjUsMTE2LjY2NjY2NjY2NjY2NjY2TDM4MS44MTgxODE4MTgxODE4LDEyMEwzODYuMzYzNjM2MzYzNjM2NCwxNDBMMzkwLjkwOTA5MDkwOTA5MDkzLDE3MEwzOTUuNDU0NTQ1NDU0NTQ1NDQsMTczLjMzMzMzMzMzMzMzMzMxTDQwMCwxNjMuMzMzMzMzMzMzMzMzMzRMNDA0LjU0NTQ1NDU0NTQ1NDU2LDE2MEw0MDkuMDkwOTA5MDkwOTA5MSwxODMuMzMzMzMzMzMzMzMzMzRMNDEzLjYzNjM2MzYzNjM2MzYsMTcwTDQxOC4xODE4MTgxODE4MTgxMywxNjBMNDIyLjcyNzI3MjcyNzI3Mjc1LDE3Ni42NjY2NjY2NjY2NjY2OUw0MjcuMjcyNzI3MjcyNzI3MjUsMjAzLjMzMzMzMzMzMzMzMzM0TDQzMS44MTgxODE4MTgxODE4LDE5Ni42NjY2NjY2NjY2NjY2Nkw0MzYuMzYzNjM2MzYzNjM2MywxODBMNDQwLjkwOTA5MDkwOTA5MDkzLDIwMC4wMDAwMDAwMDAwMDAwM0w0NDUuNDU0NTQ1NDU0NTQ1NDQsMjAwLjAwMDAwMDAwMDAwMDAzTDQ1MCwyMDAuMDAwMDAwMDAwMDAwMDNMNDU0LjU0NTQ1NDU0NTQ1NDUsMjI2LjY2NjY2NjY2NjY2NjY2TDQ1OS4wOTA5MDkwOTA5MDkxLDE2Ni42NjY2NjY2NjY2NjY2OUw0NjMuNjM2MzYzNjM2MzYzNiwxOTYuNjY2NjY2NjY2NjY2NjZMNDY4LjE4MTgxODE4MTgxODIsMTkzLjMzMzMzMzMzMzMzMzMxTDQ3Mi43MjcyNzI3MjcyNzI3LDE4MEw0NzcuMjcyNzI3MjcyNzI3MywyMjkuOTk5OTk5OTk5OTk5OTciIHN0cm9rZT0iI2ZmYTUwMCIgc3Ryb2tlLXdpZHRoPSIyIi8+PC9nPjxnIGNsYXNzPSJtYXJrLWxpbmUgcm9sZS1tYXJrIGxheWVyXzFfbWFya3MiIHJvbGU9ImdyYXBoaWNzLW9iamVjdCIgYXJpYS1yb2xlZGVzY3JpcHRpb249ImxpbmUgbWFyayBjb250YWluZXIiPjxwYXRoIGFyaWEtbGFiZWw9IlllYXIgbmFtZSBnaXZlbjogMTkxMzsgQ291bnQgb2YgUGV0ZXI6IDYiIHJvbGU9ImdyYXBoaWNzLXN5bWJvbCIgYXJpYS1yb2xlZGVzY3JpcHRpb249ImxpbmUgbWFyayIgZD0iTTEzLjYzNjM2MzYzNjM2MzYzNSwyODBMMjIuNzI3MjcyNzI3MjcyNzI3LDI3Ni42NjY2NjY2NjY2NjY3TDI3LjI3MjcyNzI3MjcyNzI3LDI2My4zMzMzMzMzMzMzMzMzTDMxLjgxODE4MTgxODE4MTgxNywyNjMuMzMzMzMzMzMzMzMzM0wzNi4zNjM2MzYzNjM2MzYzNiwyNzYuNjY2NjY2NjY2NjY2N0w0MC45MDkwOTA5MDkwOTA5MSwyNTYuNjY2NjY2NjY2NjY2N0w0NS40NTQ1NDU0NTQ1NDU0NSwyNzYuNjY2NjY2NjY2NjY2N0w1MCwyNzMuMzMzMzMzMzMzMzMzM0w1NC41NDU0NTQ1NDU0NTQ1NCwyNzMuMzMzMzMzMzMzMzMzM0w1OS4wOTA5MDkwOTA5MDkwODYsMjgzLjMzMzMzMzMzMzMzMzNMNjMuNjM2MzYzNjM2MzYzNjMsMjc2LjY2NjY2NjY2NjY2NjdMNjguMTgxODE4MTgxODE4MTcsMjgzLjMzMzMzMzMzMzMzMzNMNzIuNzI3MjcyNzI3MjcyNzIsMjczLjMzMzMzMzMzMzMzMzNMNzcuMjcyNzI3MjcyNzI3MjcsMjgwTDgxLjgxODE4MTgxODE4MTgxLDI4MEw4Ni4zNjM2MzYzNjM2MzYzNiwyODBMOTAuOTA5MDkwOTA5MDkwOSwyNzMuMzMzMzMzMzMzMzMzM0w5NS40NTQ1NDU0NTQ1NDU0NSwyNzYuNjY2NjY2NjY2NjY2N0wxMDQuNTQ1NDU0NTQ1NDU0NTMsMjc2LjY2NjY2NjY2NjY2NjdMMTA5LjA5MDkwOTA5MDkwOTA4LDI2Ni42NjY2NjY2NjY2NjY2M0wxMTMuNjM2MzYzNjM2MzYzNjMsMjgwTDExOC4xODE4MTgxODE4MTgxNywyNzMuMzMzMzMzMzMzMzMzM0wxMjIuNzI3MjcyNzI3MjcyNzIsMjU2LjY2NjY2NjY2NjY2NjdMMTI3LjI3MjcyNzI3MjcyNzI3LDI2Ni42NjY2NjY2NjY2NjY2M0wxMzEuODE4MTgxODE4MTgxOCwyNjYuNjY2NjY2NjY2NjY2NjNMMTM2LjM2MzYzNjM2MzYzNjM1LDI2MEwxNDAuOTA5MDkwOTA5MDkwOSwyNjBMMTQ1LjQ1NDU0NTQ1NDU0NTQ0LDI4My4zMzMzMzMzMzMzMzMzTDE1MCwyNjMuMzMzMzMzMzMzMzMzM0wxNTQuNTQ1NDU0NTQ1NDU0NTMsMjU2LjY2NjY2NjY2NjY2NjdMMTU5LjA5MDkwOTA5MDkwOTEsMjQzLjMzMzMzMzMzMzMzMzM0TDE2My42MzYzNjM2MzYzNjM2MywyNTYuNjY2NjY2NjY2NjY2N0wxNjguMTgxODE4MTgxODE4MiwyNjYuNjY2NjY2NjY2NjY2NjNMMTcyLjcyNzI3MjcyNzI3MjcyLDI1My4zMzMzMzMzMzMzMzMzNEwxNzcuMjcyNzI3MjcyNzI3MjgsMjQ2LjY2NjY2NjY2NjY2NjY2TDE4MS44MTgxODE4MTgxODE4LDI1My4zMzMzMzMzMzMzMzMzNEwxODYuMzYzNjM2MzYzNjM2MzcsMjMzLjMzMzMzMzMzMzMzMzM0TDE5MC45MDkwOTA5MDkwOTA5LDIzNi42NjY2NjY2NjY2NjY2NkwxOTUuNDU0NTQ1NDU0NTQ1NDcsMjQ2LjY2NjY2NjY2NjY2NjY2TDIwMCwyNDYuNjY2NjY2NjY2NjY2NjZMMjA0LjU0NTQ1NDU0NTQ1NDU2LDIwMC4wMDAwMDAwMDAwMDAwM0wyMDkuMDkwOTA5MDkwOTA5MDcsMjAwLjAwMDAwMDAwMDAwMDAzTDIxMy42MzYzNjM2MzYzNjM2MywxOTMuMzMzMzMzMzMzMzMzMzFMMjE4LjE4MTgxODE4MTgxODE2LDE4Ni42NjY2NjY2NjY2NjY2NkwyMjIuNzI3MjcyNzI3MjcyNzIsMjIzLjMzMzMzMzMzMzMzMzM0TDIyNy4yNzI3MjcyNzI3MjcyNSwyMjAuMDAwMDAwMDAwMDAwMDNMMjMxLjgxODE4MTgxODE4MTgsMjI2LjY2NjY2NjY2NjY2NjY2TDIzNi4zNjM2MzYzNjM2MzYzNSwyMjAuMDAwMDAwMDAwMDAwMDNMMjQwLjkwOTA5MDkwOTA5MDksMTkwTDI0NS40NTQ1NDU0NTQ1NDU0NCwyMDAuMDAwMDAwMDAwMDAwMDNMMjUwLDIyMC4wMDAwMDAwMDAwMDAwM0wyNTQuNTQ1NDU0NTQ1NDU0NTMsMjA2LjY2NjY2NjY2NjY2NjY2TDI1OS4wOTA5MDkwOTA5MDkxLDIxMEwyNjMuNjM2MzYzNjM2MzYzNiwyMTYuNjY2NjY2NjY2NjY2NjZMMjY4LjE4MTgxODE4MTgxODIsMjMzLjMzMzMzMzMzMzMzMzM0TDI3Mi43MjcyNzI3MjcyNzI3LDE4Ni42NjY2NjY2NjY2NjY2NkwyNzcuMjcyNzI3MjcyNzI3MywyMDAuMDAwMDAwMDAwMDAwMDNMMjgxLjgxODE4MTgxODE4MTgsMjIwLjAwMDAwMDAwMDAwMDAzTDI4Ni4zNjM2MzYzNjM2MzY0LDE3My4zMzMzMzMzMzMzMzMzMUwyOTAuOTA5MDkwOTA5MDkwOSwxOTMuMzMzMzMzMzMzMzMzMzFMMjk1LjQ1NDU0NTQ1NDU0NTUsMTgzLjMzMzMzMzMzMzMzMzM0TDMwMCwxMjYuNjY2NjY2NjY2NjY2NjlMMzA0LjU0NTQ1NDU0NTQ1NDU2LDExMC4wMDAwMDAwMDAwMDAwMUwzMDkuMDkwOTA5MDkwOTA5MDcsODMuMzMzMzMzMzMzMzMzMzRMMzEzLjYzNjM2MzYzNjM2MzcsMTMwTDMxOC4xODE4MTgxODE4MTgyLDE1My4zMzMzMzMzMzMzMzMzMUwzMjIuNzI3MjcyNzI3MjcyNzUsMTEwLjAwMDAwMDAwMDAwMDAxTDMyNy4yNzI3MjcyNzI3MjcyNSwxMjYuNjY2NjY2NjY2NjY2NjlMMzMxLjgxODE4MTgxODE4MTg3LDEyNi42NjY2NjY2NjY2NjY2OUwzMzYuMzYzNjM2MzYzNjM2NCwxODMuMzMzMzMzMzMzMzMzMzRMMzQwLjkwOTA5MDkwOTA5MDksMTY2LjY2NjY2NjY2NjY2NjY5TDM0NS40NTQ1NDU0NTQ1NDU0NCwxNTBMMzUwLDE4My4zMzMzMzMzMzMzMzMzNEwzNTQuNTQ1NDU0NTQ1NDU0NTYsMTYwTDM1OS4wOTA5MDkwOTA5MDkwNywxNjBMMzYzLjYzNjM2MzYzNjM2MzYsMjA2LjY2NjY2NjY2NjY2NjY2TDM2OC4xODE4MTgxODE4MTgyLDIxMy4zMzMzMzMzMzMzMzMzNEwzNzIuNzI3MjcyNzI3MjcyNzUsMTc2LjY2NjY2NjY2NjY2NjY5TDM3Ny4yNzI3MjcyNzI3MjcyNSwxNzBMMzgxLjgxODE4MTgxODE4MTgsMTkzLjMzMzMzMzMzMzMzMzMxTDM4Ni4zNjM2MzYzNjM2MzY0LDE4My4zMzMzMzMzMzMzMzMzNEwzOTAuOTA5MDkwOTA5MDkwOTMsMjEwTDM5NS40NTQ1NDU0NTQ1NDU0NCwyMTBMNDAwLDE2My4zMzMzMzMzMzMzMzMzNEw0MDQuNTQ1NDU0NTQ1NDU0NTYsMjEzLjMzMzMzMzMzMzMzMzM0TDQwOS4wOTA5MDkwOTA5MDkxLDIyMC4wMDAwMDAwMDAwMDAwM0w0MTMuNjM2MzYzNjM2MzYzNiwxOTYuNjY2NjY2NjY2NjY2NjZMNDE4LjE4MTgxODE4MTgxODEzLDIwMC4wMDAwMDAwMDAwMDAwM0w0MjIuNzI3MjcyNzI3MjcyNzUsMTgzLjMzMzMzMzMzMzMzMzM0TDQyNy4yNzI3MjcyNzI3MjcyNSwxNTYuNjY2NjY2NjY2NjY2NjNMNDMxLjgxODE4MTgxODE4MTgsMTczLjMzMzMzMzMzMzMzMzMxTDQzNi4zNjM2MzYzNjM2MzYzLDEzNi42NjY2NjY2NjY2NjY2OUw0NDAuOTA5MDkwOTA5MDkwOTMsMTU2LjY2NjY2NjY2NjY2NjYzTDQ0NS40NTQ1NDU0NTQ1NDU0NCwxMTAuMDAwMDAwMDAwMDAwMDFMNDUwLDE4MEw0NTQuNTQ1NDU0NTQ1NDU0NSwxNTBMNDU5LjA5MDkwOTA5MDkwOTEsMTYzLjMzMzMzMzMzMzMzMzM0TDQ2My42MzYzNjM2MzYzNjM2LDE2My4zMzMzMzMzMzMzMzMzNEw0NjguMTgxODE4MTgxODE4MiwxMTYuNjY2NjY2NjY2NjY2NjZMNDcyLjcyNzI3MjcyNzI3MjcsMTEzLjMzMzMzMzMzMzMzMzMzTDQ3Ny4yNzI3MjcyNzI3MjczLDExNi42NjY2NjY2NjY2NjY2NiIgc3Ryb2tlPSIjZmYwMDAwIiBzdHJva2Utd2lkdGg9IjIiLz48L2c+PGcgY2xhc3M9Im1hcmstcnVsZSByb2xlLW1hcmsgbGF5ZXJfMl9tYXJrcyIgcm9sZT0iZ3JhcGhpY3Mtb2JqZWN0IiBhcmlhLXJvbGVkZXNjcmlwdGlvbj0icnVsZSBtYXJrIGNvbnRhaW5lciI+PGxpbmUgYXJpYS1sYWJlbD0ieDogMTkzNiIgcm9sZT0iZ3JhcGhpY3Mtc3ltYm9sIiBhcmlhLXJvbGVkZXNjcmlwdGlvbj0icnVsZSBtYXJrIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgxMTguMTgxODE4MTgxODE4MTcsMCkiIHgyPSIwIiB5Mj0iMzAwIiBzdHJva2U9ImJsYWNrIi8+PC9nPjxnIGNsYXNzPSJtYXJrLXJ1bGUgcm9sZS1tYXJrIGxheWVyXzNfbWFya3MiIHJvbGU9ImdyYXBoaWNzLW9iamVjdCIgYXJpYS1yb2xlZGVzY3JpcHRpb249InJ1bGUgbWFyayBjb250YWluZXIiPjxsaW5lIGFyaWEtbGFiZWw9Ing6IDE5NzIiIHJvbGU9ImdyYXBoaWNzLXN5bWJvbCIgYXJpYS1yb2xlZGVzY3JpcHRpb249InJ1bGUgbWFyayIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMjgxLjgxODE4MTgxODE4MTgsMCkiIHgyPSIwIiB5Mj0iMzAwIiBzdHJva2U9ImJsYWNrIi8+PC9nPjxnIGNsYXNzPSJtYXJrLXJ1bGUgcm9sZS1tYXJrIGxheWVyXzRfbWFya3MiIHJvbGU9ImdyYXBoaWNzLW9iamVjdCIgYXJpYS1yb2xlZGVzY3JpcHRpb249InJ1bGUgbWFyayBjb250YWluZXIiPjxsaW5lIGFyaWEtbGFiZWw9Ing6IDIwMDUiIHJvbGU9ImdyYXBoaWNzLXN5bWJvbCIgYXJpYS1yb2xlZGVzY3JpcHRpb249InJ1bGUgbWFyayIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoNDMxLjgxODE4MTgxODE4MTgsMCkiIHgyPSIwIiB5Mj0iMzAwIiBzdHJva2U9ImJsYWNrIi8+PC9nPjxnIGNsYXNzPSJtYXJrLXRleHQgcm9sZS1tYXJrIGxheWVyXzVfbWFya3MiIHJvbGU9ImdyYXBoaWNzLW9iamVjdCIgYXJpYS1yb2xlZGVzY3JpcHRpb249InRleHQgbWFyayBjb250YWluZXIiPjx0ZXh0IGFyaWEtbGFiZWw9Ing6IDE5MzI7IHk6IDQwIiByb2xlPSJncmFwaGljcy1zeW1ib2wiIGFyaWEtcm9sZWRlc2NyaXB0aW9uPSJ0ZXh0IG1hcmsiIHRleHQtYW5jaG9yPSJtaWRkbGUiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDEwMCwxNjkuNjY2NjY2NjY2NjY2NjkpIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMXB4IiBmaWxsPSJibGFjayI+MTkzNjwvdGV4dD48L2c+PGcgY2xhc3M9Im1hcmstdGV4dCByb2xlLW1hcmsgbGF5ZXJfNl9tYXJrcyIgcm9sZT0iZ3JhcGhpY3Mtb2JqZWN0IiBhcmlhLXJvbGVkZXNjcmlwdGlvbj0idGV4dCBtYXJrIGNvbnRhaW5lciI+PHRleHQgYXJpYS1sYWJlbD0ieDogMTk2ODsgeTogODUiIHJvbGU9ImdyYXBoaWNzLXN5bWJvbCIgYXJpYS1yb2xlZGVzY3JpcHRpb249InRleHQgbWFyayIgdGV4dC1hbmNob3I9Im1pZGRsZSIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMjYzLjYzNjM2MzYzNjM2MzYsMTkuNjY2NjY2NjY2NjY2Njc1KSIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTFweCIgZmlsbD0iYmxhY2siPjE5NzI8L3RleHQ+PC9nPjxnIGNsYXNzPSJtYXJrLXRleHQgcm9sZS1tYXJrIGxheWVyXzdfbWFya3MiIHJvbGU9ImdyYXBoaWNzLW9iamVjdCIgYXJpYS1yb2xlZGVzY3JpcHRpb249InRleHQgbWFyayBjb250YWluZXIiPjx0ZXh0IGFyaWEtbGFiZWw9Ing6IDIwMDE7IHk6IDYwIiByb2xlPSJncmFwaGljcy1zeW1ib2wiIGFyaWEtcm9sZWRlc2NyaXB0aW9uPSJ0ZXh0IG1hcmsiIHRleHQtYW5jaG9yPSJtaWRkbGUiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDQxMy42MzYzNjM2MzYzNjM2LDEwMy4wMDAwMDAwMDAwMDAwMSkiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjExcHgiIGZpbGw9ImJsYWNrIj4yMDA1PC90ZXh0PjwvZz48ZyBjbGFzcz0ibWFyay1ncm91cCByb2xlLXRpdGxlIj48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtMzIsLTIyKSI+PHBhdGggY2xhc3M9ImJhY2tncm91bmQiIGFyaWEtaGlkZGVuPSJ0cnVlIiBkPSJNMCwwaDB2MGgwWiIgcG9pbnRlci1ldmVudHM9Im5vbmUiLz48Zz48ZyBjbGFzcz0ibWFyay10ZXh0IHJvbGUtdGl0bGUtdGV4dCIgcm9sZT0iZ3JhcGhpY3Mtc3ltYm9sIiBhcmlhLXJvbGVkZXNjcmlwdGlvbj0idGl0bGUiIGFyaWEtbGFiZWw9IlRpdGxlIHRleHQgJ1RoZSBIaXN0b3J5IG9mIFBldGVyIGZvciBVVCAocmVkKSBhbmQgT1IgKG9yYW5nZSkgJyIgcG9pbnRlci1ldmVudHM9Im5vbmUiPjx0ZXh0IHRleHQtYW5jaG9yPSJzdGFydCIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMCwxMCkiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjEzcHgiIGZvbnQtd2VpZ2h0PSJib2xkIiBmaWxsPSIjMDAwIiBvcGFjaXR5PSIxIj5UaGUgSGlzdG9yeSBvZiBQZXRlciBmb3IgVVQgKHJlZCkgYW5kIE9SIChvcmFuZ2UpPC90ZXh0PjwvZz48L2c+PHBhdGggY2xhc3M9ImZvcmVncm91bmQiIGFyaWEtaGlkZGVuPSJ0cnVlIiBkPSIiIHBvaW50ZXItZXZlbnRzPSJub25lIiBkaXNwbGF5PSJub25lIi8+PC9nPjwvZz48L2c+PHBhdGggY2xhc3M9ImZvcmVncm91bmQiIGFyaWEtaGlkZGVuPSJ0cnVlIiBkPSIiIGRpc3BsYXk9Im5vbmUiLz48L2c+PC9nPjwvZz48L3N2Zz4=" alt></p>
+<h4 class="mume-header" id="challenge-2">Challenge 2</h4>
+
+<p>For this challenge, I was unable to finish, but I was able to have the data ready for a boxplot.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python">temp <span class="token operator">=</span> <span class="token punctuation">(</span>temp<span class="token punctuation">[</span><span class="token string">&apos;col1&apos;</span><span class="token punctuation">]</span>
+    <span class="token punctuation">.</span><span class="token builtin">str</span><span class="token punctuation">.</span>split<span class="token punctuation">(</span><span class="token string">&apos;-&apos;</span><span class="token punctuation">,</span> expand <span class="token operator">=</span> <span class="token boolean">True</span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span>rename<span class="token punctuation">(</span>columns<span class="token operator">=</span><span class="token punctuation">{</span><span class="token number">0</span><span class="token punctuation">:</span> <span class="token string">&quot;col1&quot;</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">:</span> <span class="token string">&quot;col2&quot;</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span>reset_index<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">)</span>
+</pre><h5 class="mume-header" id="answer-1">Answer</h5>
+
+<p><img src="temp.png" alt></p>
+<h4 class="mume-header" id="challenge-3">Challenge 3</h4>
+
+<p>For this challenge, I replaced the lost values with NaN&apos;s and replaced them with 125. I then found the mean.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python">mister<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">(</span>mister<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span>
+    <span class="token punctuation">.</span>replace<span class="token punctuation">(</span><span class="token string">&apos;lost&apos;</span><span class="token punctuation">,</span>np<span class="token punctuation">.</span>nan<span class="token punctuation">)</span>
+    <span class="token punctuation">.</span>fillna<span class="token punctuation">(</span><span class="token number">125</span><span class="token punctuation">)</span>
+<span class="token punctuation">)</span>
+  
+reported_mean <span class="token operator">=</span> <span class="token builtin">round</span><span class="token punctuation">(</span>mister<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>mean<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span>
+</pre><h5 class="mume-header" id="answer-2">Answer</h5>
+
+<p>59.83</p>
+<h4 class="mume-header" id="challenge-4">Challenge 4</h4>
+
+<p>For this challenge, I replaced the Gender column with numerical values. I then rand the GradientBoostingClassifier model.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python">clf <span class="token operator">=</span> GradientBoostingClassifier<span class="token punctuation">(</span>random_state <span class="token operator">=</span> <span class="token number">2020</span><span class="token punctuation">)</span><span class="token punctuation">.</span>fit<span class="token punctuation">(</span>X_train<span class="token punctuation">,</span> y_train<span class="token punctuation">)</span>
+<span class="token punctuation">)</span>
+  
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+  
+best_features <span class="token operator">=</span> feature_df<span class="token punctuation">.</span>sort_values<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">&apos;importance&apos;</span><span class="token punctuation">]</span><span class="token punctuation">,</span>ascending <span class="token operator">=</span> <span class="token boolean">False</span><span class="token punctuation">)</span><span class="token punctuation">.</span>head<span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">.</span>reset_index<span class="token punctuation">(</span>drop<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span>
+</pre><h5 class="mume-header" id="answer-3">Answer</h5>
+
+<p>Below are the 10 best features for predicting Gender with Star Wars data. This was 60.7 percent accurate.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:right"></th>
+<th style="text-align:left">features</th>
+<th style="text-align:right">importance</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right">0</td>
+<td style="text-align:left">rank__i__the_phantom_menace</td>
+<td style="text-align:right">0.0917625</td>
+</tr>
+<tr>
+<td style="text-align:right">1</td>
+<td style="text-align:left">know_expanded_Yes</td>
+<td style="text-align:right">0.073969</td>
+</tr>
+<tr>
+<td style="text-align:right">2</td>
+<td style="text-align:left">rank__ii__attack_of_the_clones</td>
+<td style="text-align:right">0.0703866</td>
+</tr>
+<tr>
+<td style="text-align:right">3</td>
+<td style="text-align:left">view__c-3p0_Very favorably</td>
+<td style="text-align:right">0.0693884</td>
+</tr>
+<tr>
+<td style="text-align:right">4</td>
+<td style="text-align:left">age_min</td>
+<td style="text-align:right">0.0379889</td>
+</tr>
+<tr>
+<td style="text-align:right">5</td>
+<td style="text-align:left">rank__iv__a_new_hope</td>
+<td style="text-align:right">0.0353637</td>
+</tr>
+<tr>
+<td style="text-align:right">6</td>
+<td style="text-align:left">education</td>
+<td style="text-align:right">0.0323401</td>
+</tr>
+<tr>
+<td style="text-align:right">7</td>
+<td style="text-align:left">view__darth_vader_Very favorably</td>
+<td style="text-align:right">0.0321828</td>
+</tr>
+<tr>
+<td style="text-align:right">8</td>
+<td style="text-align:left">rank__iii__revenge_of_the_sith</td>
+<td style="text-align:right">0.0315947</td>
+</tr>
+<tr>
+<td style="text-align:right">9</td>
+<td style="text-align:left">view__anakin_skywalker_Very favorably</td>
+<td style="text-align:right">0.0300529</td>
+</tr>
+</tbody>
+</table>
+<h3 class="mume-header" id="appendix">Appendix</h3>
+
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword keyword-import">import</span> pandas <span class="token keyword keyword-as">as</span> pd
+<span class="token keyword keyword-import">import</span> altair <span class="token keyword keyword-as">as</span> alt
+<span class="token keyword keyword-import">import</span> numpy <span class="token keyword keyword-as">as</span> np
+  
+<span class="token keyword keyword-from">from</span> sklearn<span class="token punctuation">.</span>model_selection <span class="token keyword keyword-import">import</span> train_test_split
+<span class="token keyword keyword-from">from</span> sklearn<span class="token punctuation">.</span>metrics <span class="token keyword keyword-import">import</span> accuracy_score
+<span class="token keyword keyword-from">from</span> sklearn<span class="token punctuation">.</span>ensemble <span class="token keyword keyword-import">import</span> GradientBoostingClassifier
+  
+  
+<span class="token comment"># CHALLENGE ONE</span>
+  
+  
+gh_path <span class="token operator">=</span> <span class="token string">&quot;https://github.com/byuidatascience/data4names/raw/master/data-raw&quot;</span>
+url_names <span class="token operator">=</span> gh_path <span class="token operator">+</span> <span class="token string">&quot;/names_year/names_year.csv&quot;</span>
+dat_names <span class="token operator">=</span> pd<span class="token punctuation">.</span>read_csv<span class="token punctuation">(</span>url_names<span class="token punctuation">)</span>
+  
+peter_freq_table <span class="token operator">=</span> <span class="token punctuation">(</span>dat_names<span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token string">&apos;name&apos;</span><span class="token punctuation">,</span><span class="token string">&apos;year&apos;</span><span class="token punctuation">,</span><span class="token string">&apos;UT&apos;</span><span class="token punctuation">,</span><span class="token string">&apos;OR&apos;</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">.</span>query<span class="token punctuation">(</span><span class="token string">&quot;name == &apos;Peter&apos;&quot;</span><span class="token punctuation">)</span>
+  
+<span class="token comment"># peter_freq_table.pivot_table(</span>
+<span class="token comment">#     #index = &apos;Region&apos;, </span>
+<span class="token comment">#     columns = &apos;gadget_type&apos;,</span>
+<span class="token comment">#     aggfunc = &apos;size&apos;)</span>
+  
+peter_freq_table_ut <span class="token operator">=</span> <span class="token punctuation">(</span>dat_names<span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token string">&apos;name&apos;</span><span class="token punctuation">,</span><span class="token string">&apos;year&apos;</span><span class="token punctuation">,</span><span class="token string">&apos;UT&apos;</span><span class="token punctuation">,</span><span class="token string">&apos;OR&apos;</span><span class="token punctuation">]</span><span class="token punctuation">]</span>
+    <span class="token punctuation">.</span>query<span class="token punctuation">(</span><span class="token string">&quot;name == &apos;Peter&apos; and UT &gt; 0&quot;</span><span class="token punctuation">)</span>
+<span class="token punctuation">)</span>
+  
+peter_freq_table_or <span class="token operator">=</span> <span class="token punctuation">(</span>dat_names<span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token string">&apos;name&apos;</span><span class="token punctuation">,</span><span class="token string">&apos;year&apos;</span><span class="token punctuation">,</span><span class="token string">&apos;UT&apos;</span><span class="token punctuation">,</span><span class="token string">&apos;OR&apos;</span><span class="token punctuation">]</span><span class="token punctuation">]</span>
+    <span class="token punctuation">.</span>query<span class="token punctuation">(</span><span class="token string">&quot;name == &apos;Peter&apos; and OR &gt; 0&quot;</span><span class="token punctuation">)</span>
+<span class="token punctuation">)</span>
+  
+peter_freq_chart_ut <span class="token operator">=</span> <span class="token punctuation">(</span>alt<span class="token punctuation">.</span>Chart<span class="token punctuation">(</span>
+    peter_freq_table_ut<span class="token punctuation">,</span>
+    <span class="token comment">#title = &quot;Frequency of the name Peter from 1910 to 2015&quot;</span>
+    <span class="token punctuation">)</span>
+    <span class="token punctuation">.</span>encode<span class="token punctuation">(</span>
+        x <span class="token operator">=</span> alt<span class="token punctuation">.</span>X<span class="token punctuation">(</span>
+            <span class="token string">&apos;year:Q&apos;</span><span class="token punctuation">,</span>
+            axis<span class="token operator">=</span>alt<span class="token punctuation">.</span>Axis<span class="token punctuation">(</span><span class="token builtin">format</span><span class="token operator">=</span><span class="token string">&apos;.4&apos;</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+            title <span class="token operator">=</span> <span class="token string">&quot;Year name given&quot;</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        y <span class="token operator">=</span> alt<span class="token punctuation">.</span>Y<span class="token punctuation">(</span>
+            <span class="token string">&apos;UT&apos;</span><span class="token punctuation">,</span>
+            <span class="token comment">#scale = alt.Scale(domain=[0, 10000]),</span>
+            title <span class="token operator">=</span> <span class="token string">&quot;Count of Peter&quot;</span><span class="token punctuation">)</span>
+    <span class="token punctuation">)</span>
+    <span class="token punctuation">.</span>mark_line<span class="token punctuation">(</span>color<span class="token operator">=</span><span class="token string">&quot;#ff0000&quot;</span><span class="token punctuation">)</span>
+<span class="token punctuation">)</span>
+  
+peter_freq_chart_or <span class="token operator">=</span> <span class="token punctuation">(</span>alt<span class="token punctuation">.</span>Chart<span class="token punctuation">(</span>
+    peter_freq_table_or<span class="token punctuation">,</span>
+    <span class="token comment">#title = &quot;Frequency of the name Peter from 1910 to 2015&quot;</span>
+    <span class="token punctuation">)</span>
+    <span class="token punctuation">.</span>encode<span class="token punctuation">(</span>
+        x <span class="token operator">=</span> alt<span class="token punctuation">.</span>X<span class="token punctuation">(</span>
+            <span class="token string">&apos;year:Q&apos;</span><span class="token punctuation">,</span>
+            axis<span class="token operator">=</span>alt<span class="token punctuation">.</span>Axis<span class="token punctuation">(</span><span class="token builtin">format</span><span class="token operator">=</span><span class="token string">&apos;.4&apos;</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+            title <span class="token operator">=</span> <span class="token string">&quot;Year name given&quot;</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        y <span class="token operator">=</span> alt<span class="token punctuation">.</span>Y<span class="token punctuation">(</span>
+            <span class="token string">&apos;OR&apos;</span><span class="token punctuation">,</span>
+            <span class="token comment">#scale = alt.Scale(domain=[0, 10000]),</span>
+            title <span class="token operator">=</span> <span class="token string">&quot;Count of Peter&quot;</span><span class="token punctuation">)</span>
+    <span class="token punctuation">)</span>
+    <span class="token punctuation">.</span>mark_line<span class="token punctuation">(</span>color<span class="token operator">=</span><span class="token string">&quot;#ffa500&quot;</span><span class="token punctuation">)</span>
+<span class="token punctuation">)</span>
+  
+  
+line_plot_1 <span class="token operator">=</span> <span class="token punctuation">(</span>
+alt<span class="token punctuation">.</span>Chart<span class="token punctuation">(</span>pd<span class="token punctuation">.</span>DataFrame
+    <span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token string">&apos;x&apos;</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token number">1936</span><span class="token punctuation">]</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token punctuation">.</span>mark_rule<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">.</span>encode<span class="token punctuation">(</span>x<span class="token operator">=</span><span class="token string">&apos;x&apos;</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+  
+line_plot_2 <span class="token operator">=</span> <span class="token punctuation">(</span>
+alt<span class="token punctuation">.</span>Chart<span class="token punctuation">(</span>pd<span class="token punctuation">.</span>DataFrame
+    <span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token string">&apos;x&apos;</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token number">1972</span><span class="token punctuation">]</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token punctuation">.</span>mark_rule<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">.</span>encode<span class="token punctuation">(</span>x<span class="token operator">=</span><span class="token string">&apos;x&apos;</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+  
+line_plot_3 <span class="token operator">=</span> <span class="token punctuation">(</span>
+alt<span class="token punctuation">.</span>Chart<span class="token punctuation">(</span>pd<span class="token punctuation">.</span>DataFrame
+    <span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token string">&apos;x&apos;</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token number">2005</span><span class="token punctuation">]</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token punctuation">.</span>mark_rule<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">.</span>encode<span class="token punctuation">(</span>x<span class="token operator">=</span><span class="token string">&apos;x&apos;</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+  
+text1 <span class="token operator">=</span> <span class="token punctuation">(</span>
+alt<span class="token punctuation">.</span>Chart
+    <span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token string">&apos;values&apos;</span><span class="token punctuation">:</span><span class="token punctuation">[</span><span class="token punctuation">{</span><span class="token string">&apos;x&apos;</span><span class="token punctuation">:</span> <span class="token number">1932</span><span class="token punctuation">,</span> <span class="token string">&apos;y&apos;</span><span class="token punctuation">:</span> <span class="token number">40</span><span class="token punctuation">}</span><span class="token punctuation">]</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token punctuation">.</span>mark_text<span class="token punctuation">(</span>text<span class="token operator">=</span><span class="token string">&apos;1936&apos;</span><span class="token punctuation">)</span>
+<span class="token punctuation">.</span>encode<span class="token punctuation">(</span>x<span class="token operator">=</span><span class="token string">&apos;x:Q&apos;</span><span class="token punctuation">,</span> y<span class="token operator">=</span><span class="token string">&apos;y:Q&apos;</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+  
+text2 <span class="token operator">=</span> <span class="token punctuation">(</span>
+alt<span class="token punctuation">.</span>Chart
+    <span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token string">&apos;values&apos;</span><span class="token punctuation">:</span><span class="token punctuation">[</span><span class="token punctuation">{</span><span class="token string">&apos;x&apos;</span><span class="token punctuation">:</span> <span class="token number">1968</span><span class="token punctuation">,</span> <span class="token string">&apos;y&apos;</span><span class="token punctuation">:</span> <span class="token number">85</span><span class="token punctuation">}</span><span class="token punctuation">]</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token punctuation">.</span>mark_text<span class="token punctuation">(</span>text<span class="token operator">=</span><span class="token string">&apos;1972&apos;</span><span class="token punctuation">)</span>
+<span class="token punctuation">.</span>encode<span class="token punctuation">(</span>x<span class="token operator">=</span><span class="token string">&apos;x:Q&apos;</span><span class="token punctuation">,</span> y<span class="token operator">=</span><span class="token string">&apos;y:Q&apos;</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+  
+text3 <span class="token operator">=</span> <span class="token punctuation">(</span>
+alt<span class="token punctuation">.</span>Chart
+    <span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token string">&apos;values&apos;</span><span class="token punctuation">:</span><span class="token punctuation">[</span><span class="token punctuation">{</span><span class="token string">&apos;x&apos;</span><span class="token punctuation">:</span> <span class="token number">2001</span><span class="token punctuation">,</span> <span class="token string">&apos;y&apos;</span><span class="token punctuation">:</span> <span class="token number">60</span><span class="token punctuation">}</span><span class="token punctuation">]</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token punctuation">.</span>mark_text<span class="token punctuation">(</span>text<span class="token operator">=</span><span class="token string">&apos;2005&apos;</span><span class="token punctuation">)</span>
+<span class="token punctuation">.</span>encode<span class="token punctuation">(</span>x<span class="token operator">=</span><span class="token string">&apos;x:Q&apos;</span><span class="token punctuation">,</span> y<span class="token operator">=</span><span class="token string">&apos;y:Q&apos;</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+  
+<span class="token builtin">all</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>peter_freq_chart_or <span class="token operator">+</span> peter_freq_chart_ut <span class="token operator">+</span> line_plot_1 <span class="token operator">+</span> line_plot_2 <span class="token operator">+</span> line_plot_3 <span class="token operator">+</span> text1 <span class="token operator">+</span> text2 <span class="token operator">+</span> text3<span class="token punctuation">)</span>
+<span class="token punctuation">.</span>properties<span class="token punctuation">(</span>
+    title<span class="token operator">=</span> <span class="token punctuation">{</span>
+      <span class="token string">&quot;text&quot;</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">&quot;The History of Peter for UT (red) and OR (orange) &quot;</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+     <span class="token comment">#&quot;subtitle&quot;: [&apos;Super cool subtitle&apos;]</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    width <span class="token operator">=</span> <span class="token number">500</span><span class="token punctuation">)</span>
+<span class="token punctuation">.</span>configure_title<span class="token punctuation">(</span>anchor<span class="token operator">=</span><span class="token string">&apos;start&apos;</span>
+<span class="token punctuation">)</span><span class="token punctuation">)</span>
+  
+<span class="token builtin">all</span><span class="token punctuation">.</span>save<span class="token punctuation">(</span><span class="token string">&apos;gq1.svg&apos;</span><span class="token punctuation">)</span>
+  
+  
+<span class="token comment"># CHALLENGE 2</span>
+  
+ages <span class="token operator">=</span> pd<span class="token punctuation">.</span>Series<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">&quot;10-25&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;10-25&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;26-35&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;56-85&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;0-9&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;46-55&quot;</span><span class="token punctuation">,</span><span class="token string">&quot;56-85&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;0-9&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;26-35&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;56-85&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;0-9&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;10-25&quot;</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+  
+  
+  
+temp <span class="token operator">=</span> pd<span class="token punctuation">.</span>DataFrame<span class="token punctuation">(</span>ages<span class="token punctuation">)</span><span class="token punctuation">.</span>rename<span class="token punctuation">(</span>columns<span class="token operator">=</span><span class="token punctuation">{</span><span class="token number">0</span><span class="token punctuation">:</span> <span class="token string">&quot;col1&quot;</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
+  
+temp <span class="token operator">=</span> <span class="token punctuation">(</span>temp<span class="token punctuation">[</span><span class="token string">&apos;col1&apos;</span><span class="token punctuation">]</span>
+    <span class="token punctuation">.</span><span class="token builtin">str</span><span class="token punctuation">.</span>split<span class="token punctuation">(</span><span class="token string">&apos;-&apos;</span><span class="token punctuation">,</span> expand <span class="token operator">=</span> <span class="token boolean">True</span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span>rename<span class="token punctuation">(</span>columns<span class="token operator">=</span><span class="token punctuation">{</span><span class="token number">0</span><span class="token punctuation">:</span> <span class="token string">&quot;col1&quot;</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">:</span> <span class="token string">&quot;col2&quot;</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span>reset_index<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">)</span>
+  
+temp <span class="token operator">=</span> alt<span class="token punctuation">.</span>Chart<span class="token punctuation">(</span>temp<span class="token punctuation">)</span><span class="token punctuation">.</span>mark_boxplot<span class="token punctuation">(</span>extent<span class="token operator">=</span><span class="token string">&apos;min-max&apos;</span><span class="token punctuation">)</span><span class="token punctuation">.</span>encode<span class="token punctuation">(</span>
+    y<span class="token operator">=</span><span class="token string">&apos;index&apos;</span><span class="token punctuation">,</span>
+    x<span class="token operator">=</span><span class="token string">&apos;col1:Q&apos;</span>
+<span class="token punctuation">)</span>
+  
+  
+temp<span class="token punctuation">.</span>save<span class="token punctuation">(</span><span class="token string">&apos;temp.png&apos;</span><span class="token punctuation">)</span>
+  
+<span class="token comment"># Challenge 3</span>
+mister <span class="token operator">=</span> pd<span class="token punctuation">.</span>Series<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">&quot;lost&quot;</span><span class="token punctuation">,</span> <span class="token number">15</span><span class="token punctuation">,</span> <span class="token number">22</span><span class="token punctuation">,</span> <span class="token number">45</span><span class="token punctuation">,</span> <span class="token number">31</span><span class="token punctuation">,</span> <span class="token string">&quot;lost&quot;</span><span class="token punctuation">,</span> <span class="token number">85</span><span class="token punctuation">,</span> <span class="token number">38</span><span class="token punctuation">,</span> <span class="token number">129</span><span class="token punctuation">,</span> <span class="token number">80</span><span class="token punctuation">,</span> <span class="token number">21</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+  
+mister <span class="token operator">=</span> pd<span class="token punctuation">.</span>DataFrame<span class="token punctuation">(</span>mister<span class="token punctuation">)</span><span class="token punctuation">.</span>reset_index<span class="token punctuation">(</span><span class="token punctuation">)</span>
+  
+mister<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">(</span>mister<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span>
+    <span class="token punctuation">.</span>replace<span class="token punctuation">(</span><span class="token string">&apos;lost&apos;</span><span class="token punctuation">,</span>np<span class="token punctuation">.</span>nan<span class="token punctuation">)</span>
+    <span class="token punctuation">.</span>fillna<span class="token punctuation">(</span><span class="token number">125</span><span class="token punctuation">)</span>
+<span class="token punctuation">)</span>
+  
+reported_mean <span class="token operator">=</span> <span class="token builtin">round</span><span class="token punctuation">(</span>mister<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>mean<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span>
+  
+<span class="token comment">#Challenge 4</span>
+  
+url <span class="token operator">=</span> <span class="token string">&quot;http://byuistats.github.io/CSE250-Course/data/clean_starwars.csv&quot;</span>
+ml_chal <span class="token operator">=</span> pd<span class="token punctuation">.</span>read_csv<span class="token punctuation">(</span>url<span class="token punctuation">)</span>
+  
+ml_chal<span class="token punctuation">[</span><span class="token string">&apos;gender&apos;</span><span class="token punctuation">]</span> <span class="token operator">=</span> ml_chal<span class="token punctuation">[</span><span class="token string">&apos;gender&apos;</span><span class="token punctuation">]</span><span class="token punctuation">.</span>replace<span class="token punctuation">(</span><span class="token string">&apos;Male&apos;</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span>
+ml_chal<span class="token punctuation">[</span><span class="token string">&apos;gender&apos;</span><span class="token punctuation">]</span> <span class="token operator">=</span> ml_chal<span class="token punctuation">[</span><span class="token string">&apos;gender&apos;</span><span class="token punctuation">]</span><span class="token punctuation">.</span>replace<span class="token punctuation">(</span><span class="token string">&apos;Female&apos;</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">)</span>
+  
+  
+X_pred <span class="token operator">=</span> ml_chal<span class="token punctuation">.</span>drop<span class="token punctuation">(</span>columns <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">&apos;gender&apos;</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+y_pred <span class="token operator">=</span> ml_chal<span class="token punctuation">[</span><span class="token string">&apos;gender&apos;</span><span class="token punctuation">]</span>
+  
+<span class="token comment"># SPLIT VARIABLES</span>
+X_train<span class="token punctuation">,</span> X_test<span class="token punctuation">,</span> y_train<span class="token punctuation">,</span> y_test <span class="token operator">=</span> train_test_split<span class="token punctuation">(</span>X_pred<span class="token punctuation">,</span>y_pred<span class="token punctuation">,</span>test_size<span class="token operator">=</span><span class="token number">.20</span><span class="token punctuation">,</span>random_state <span class="token operator">=</span> <span class="token number">2020</span><span class="token punctuation">)</span>
+  
+<span class="token comment"># # CREATE MODEL WITH TRAINING DATA</span>
+clf <span class="token operator">=</span> GradientBoostingClassifier<span class="token punctuation">(</span>random_state <span class="token operator">=</span> <span class="token number">2020</span><span class="token punctuation">)</span><span class="token punctuation">.</span>fit<span class="token punctuation">(</span>X_train<span class="token punctuation">,</span> y_train<span class="token punctuation">)</span>
+  
+<span class="token comment"># # TEST MODEL AND REPORT ACCURACY</span>
+y_pred <span class="token operator">=</span> clf<span class="token punctuation">.</span>predict<span class="token punctuation">(</span>X_test<span class="token punctuation">)</span>
+y_probs <span class="token operator">=</span> clf<span class="token punctuation">.</span>predict_proba<span class="token punctuation">(</span>X_test<span class="token punctuation">)</span>
+  
+score <span class="token operator">=</span> accuracy_score<span class="token punctuation">(</span>y_test<span class="token punctuation">,</span> y_pred<span class="token punctuation">)</span>
+  
+  
+feature_df <span class="token operator">=</span> pd<span class="token punctuation">.</span>DataFrame<span class="token punctuation">(</span>
+    <span class="token punctuation">{</span><span class="token string">&apos;features&apos;</span><span class="token punctuation">:</span> X_train<span class="token punctuation">.</span>columns<span class="token punctuation">,</span> 
+    <span class="token string">&apos;importance&apos;</span><span class="token punctuation">:</span> clf<span class="token punctuation">.</span>feature_importances_<span class="token punctuation">}</span><span class="token punctuation">)</span>
+  
+best_features <span class="token operator">=</span> feature_df<span class="token punctuation">.</span>sort_values<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">&apos;importance&apos;</span><span class="token punctuation">]</span><span class="token punctuation">,</span>ascending <span class="token operator">=</span> <span class="token boolean">False</span><span class="token punctuation">)</span><span class="token punctuation">.</span>head<span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">.</span>reset_index<span class="token punctuation">(</span>drop<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span>
+  
+  
+  
+</pre>
+      </div>
+      
+      
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    </body></html>

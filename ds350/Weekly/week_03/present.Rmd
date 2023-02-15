@@ -1,0 +1,42 @@
+---
+title: "28.2.1"
+author: "Aj Averett"
+date: '2022-05-05'
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = F, message = F)
+```
+
+## R Markdown
+# 28.2.1 Exercises
+# Create one plot on the fuel economy data
+# with customised title, subtitle, caption,
+# x, y, and colour labels.
+```{r}
+
+library(tidyverse)
+library(mosaic)
+library(RColorBrewer)
+
+mpg %>% 
+  ggplot(aes(x = fct_reorder(drv, hwy, .fun = median),
+             y = hwy,
+             fill = fct_reorder(drv, hwy, .fun=median))) +
+  geom_boxplot() +
+  scale_fill_brewer(palette = 12)+
+  labs() +
+  theme_bw() +
+  theme(legend.position = 0) +
+  labs(title = 'Highway miles per gallon by drive train type',
+       subtitle = "I can't think of a good subtitle",
+       x = 'Highway miles per gallon',
+       y = 'Type of drive train',
+       caption = 'f = front-wheel drive\nr = rear wheel drive\n4 = 4wd'
+       ) +
+  theme(plot.title = element_text(hjust = 0.5, vjust = 1, face = "bold", color = "maroon",),
+        plot.subtitle = element_text(hjust=0.5, vjust = 1))
+
+
+```

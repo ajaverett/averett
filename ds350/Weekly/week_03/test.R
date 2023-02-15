@@ -1,0 +1,68 @@
+library(tidyverse)
+library(stringr)
+library(grid)
+
+
+mortality <- read_csv("mortality.csv")
+
+mortality %>% 
+  filter(Entity %in%  c('Kazakhstan','Colombia','Guatemala')) %>% 
+  ggplot(aes(x = Day,
+             y = p_avg_all_ages,
+             group = factor(Entity, levels = c("Kazakhstan", "Guatemala", "Colombia")),
+             color = Entity)) +
+  
+  #Guide Lines
+  
+  geom_hline(yintercept = 0, color = 'gray', alpha = 0.6) +
+  geom_hline(yintercept = c(-50,50,100), color = 'gray',linetype = 2, alpha = 0.4) +
+  coord_cartesian(ylim = c(-55, 140)) +
+  scale_x_date(date_breaks = "316 days",
+               date_labels =  "%b %d, %Y",
+               #limits = c(as.Date("2019-12-31"), NA)
+               ) +
+  scale_y_continuous(labels = function(x) paste0(x, "%")) +
+
+
+  
+  #Real Lines
+  
+  geom_line() +
+  geom_point() +
+  
+  #Theme lines
+  
+  scale_color_manual(values = c("#911010", "#42318c", '#278265')) +
+  theme(axis.line = element_line(colour = "white"),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(),
+        panel.border = element_blank(),
+        panel.background = element_blank()) +
+  
+  
+  #Legend
+  
+  theme(legend.position = 'right') +
+  theme(text = element_text(family="serif"),
+        plot.caption = element_text(hjust = 0, size = 7),
+        legend.title = element_blank(),
+        axis.text = element_text(size = 12),
+        axis.title = element_text(size = 14,face = "bold"),
+        #plot.title = element_text(hjust = 0),
+        #plot.subtitle = element_text(hjust = 0)
+        ) +
+  scale_fill_discrete(limits = c("Kazakhstan", "Guatemala", "Colombia")) +
+
+  
+  #DOESN'T WORK
+  
+  guides(fill = guide_legend(reverse = TRUE)) +
+  
+  #Subtitle
+  
+  labs(caption = 'Source: Human Mortality Database (2022), World Mortality Dataset (2022)
+Note: Comparisons across countries are affected by differences in the completeness of death reporting. Details can
+be found at our Excess Mortality page.',
+       title = str_wrap('Excess mortality: Deaths from all causes compared to average over previous years', 65),
+       subtitle = str_wrap('The percentage difference between the reported number of weekly or monthly deaths in 2020-2022 and the average number of deaths in the same period over the years 2015-2019. The reported number might not count all deaths that occurred due to incomplete coverage and delays in reporting.', 85),
+       x = '',y = '') 
